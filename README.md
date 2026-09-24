@@ -28,7 +28,7 @@ the page falls back to a complete, static, readable document.
 | # | Section | What it does |
 |---|---|---|
 | — | Loader | "MARC" on four shutters that echo the four panels of his LinkedIn banner. The four roles play one at a time; each is fully out before the next comes in. Click, Escape or Enter skips it. It's shorter on repeat visits in the same session. |
-| 00 | Hero | Four moments, no captions. The panels are monochrome and the cursor paints colour back in. Press-and-hold floods the colour, pulls the panel under the pointer wide, pushes the photos in slowly and sends a shockwave through the name. The fourth panel ("The Courage to Ask") is a full-bleed portrait that doesn't parallax. |
+| 00 | Hero | Four moments, no captions. The panels are monochrome and the cursor paints colour back in. Press-and-hold floods the colour and expands the panel under the pointer. The fourth panel ("The Courage to Ask") is a full-bleed portrait that doesn't parallax. |
 | 01 | Who he is | A manifesto whose words light up as you scroll, with photo "pills" inline, then a portrait and key facts. |
 | 02 | Four ways to read him | Fighter, Speaker, Patient Advocate, Strategist. Hovering a line shows a photo that follows the cursor (fixed to the viewport, re-checked on scroll so it can't get stuck). Each row is a link: Fighter → rounds, Speaker → talks, Advocate → receipts, Strategist → services. |
 | — | The pause | CDC statistic "1 in 7", then a quote. |
@@ -46,7 +46,7 @@ the page falls back to a complete, static, readable document.
 - "Marc Coronel" top left.
 - One filled red "Book Marc" button top right.
 - A "Skip story" link.
-- An Index menu covering the full screen, with a one-line description of the hovered section.
+- An Index menu covering the full screen, with a photo preview of the hovered section.
 - A jump curtain: links to far-off sections drop four shutters, move instantly behind them, settle every scrubbed animation, then lift. Short hops still smooth-scroll.
 - A progress rail with section ticks.
 - Sound, off by default. It's a generated ambient chord pad with no audio files, and it only starts on click.

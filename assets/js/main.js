@@ -57,7 +57,7 @@
   });
 
   /* ── index menu ──────────────────────────────────────────────────── */
-  var menuBtn = $('#menuBtn'), menu = $('#menu'), blurb = $('#menuBlurb');
+  var menuBtn = $('#menuBtn'), menu = $('#menu'), preview = $('#menuPreview');
   function openMenu() {
     root.classList.add('is-menu');
     menu.setAttribute('aria-hidden', 'false');
@@ -76,9 +76,9 @@
   addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('is-menu')) closeMenu(); });
   $$('.menu__list a').forEach(function (a) {
     a.addEventListener('mouseenter', function () {
-      if (!blurb || blurb.textContent === a.dataset.blurb) return;
-      blurb.textContent = a.dataset.blurb;
-      blurb.classList.remove('is-swap'); void blurb.offsetWidth; blurb.classList.add('is-swap');
+      if (!preview || preview.getAttribute('src') === a.dataset.img) return;
+      preview.style.opacity = 0;
+      setTimeout(function () { preview.src = a.dataset.img; preview.style.opacity = 1; }, 180);
     });
   });
 
@@ -367,18 +367,13 @@
     addEventListener('keydown', function (e) { if (e.key === 'Escape' || e.key === 'Enter') skip(); }, { once: true });
   }
 
-  /* ── hero: cursor paints colour back in; hold does a lot more ────── */
+  /* ── hero: cursor paints colour back in; hold expands the panel ──── */
   (function heroReveal() {
-    var hero = $('#hero'), layer = $('#heroColor'), wave = $('#heroWave'), hint = $('#heroHint');
+    var hero = $('#hero'), layer = $('#heroColor');
     if (!fine) return;
     var st = { x: -999, y: -999, r: 0, tx: -999, ty: -999, tr: 0 }, inside = false, held = false, seenPtr = false;
-    var hintIdle = hint ? hint.textContent : '';
     var base = function () { return Math.min(innerWidth, innerHeight) * .2; };
     var big = function () { return Math.max(innerWidth, innerHeight) * .9; };
-    function setHint(txt) {
-      if (!hint || hint.textContent === txt) return;
-      gsap.to(hint, { opacity: 0, duration: .15, onComplete: function () { hint.textContent = txt; gsap.to(hint, { opacity: 1, duration: .3 }); } });
-    }
     hero.addEventListener('pointermove', function (e) {
       var r = hero.getBoundingClientRect();
       st.tx = e.clientX - r.left; st.ty = e.clientY - r.top;
@@ -391,21 +386,10 @@
       if (e.target.closest('a, button')) return;
       held = true; st.tr = big();
       hero.classList.add('is-held');
-      // shockwave from the pointer
-      var r = heroStage.getBoundingClientRect();
-      wave.style.setProperty('--wx', (e.clientX - r.left) + 'px');
-      wave.style.setProperty('--wy', (e.clientY - r.top) + 'px');
-      wave.classList.remove('is-go'); void wave.offsetWidth; wave.classList.add('is-go');
-      // the name takes the hit and settles
-      if (heroChars.length && body.classList.contains('is-loaded')) {
-        gsap.to(heroChars, { keyframes: [{ yPercent: -18, duration: .22, ease: 'power2.out' }, { yPercent: 0, duration: .9, ease: 'elastic.out(1, .45)' }], stagger: { each: .028, from: 'start' }, overwrite: true });
-      }
-      setHint('Keep holding. Let go to fade back.');
     });
     addEventListener('pointerup', function () {
       if (!held) return; held = false; st.tr = inside ? base() : 0;
       hero.classList.remove('is-held');
-      setHint(hintIdle);
     });
     $$('.hp', layer).forEach(function (p, i) {
       p.addEventListener('pointerenter', function () { heroStage.setAttribute('data-active', i); });

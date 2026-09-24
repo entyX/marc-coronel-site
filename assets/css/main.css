@@ -314,14 +314,12 @@ html.is-menu { --head-c: var(--paper); }
 .is-menu .menu__list li:nth-child(7) a { transition-delay: .42s; }
 .is-menu .menu__list li:nth-child(8) a { transition-delay: .46s; }
 .is-menu .menu__list li:nth-child(9) a { transition-delay: .50s; }
-.menu__blurb {
-  justify-self: end; max-width: 16ch;
-  font-family: var(--f-serif); font-style: italic; font-size: clamp(1.8rem, 3.4vw, 3.4rem); line-height: 1.02; color: var(--mute-l);
-  opacity: 0; transform: translateY(20px); transition: opacity .6s .4s, transform 1s var(--ease) .4s;
+.menu__preview {
+  aspect-ratio: 4 / 5; max-height: 70vh; border-radius: 14px; overflow: hidden; justify-self: end; width: min(100%, 460px);
+  clip-path: inset(100% 0 0 0 round 14px); transition: clip-path 1s var(--ease-io) .25s;
 }
-.is-menu .menu__blurb { opacity: 1; transform: none; }
-.menu__blurb.is-swap { animation: blurbSwap .5s var(--ease); }
-@keyframes blurbSwap { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.is-menu .menu__preview { clip-path: inset(0 0 0 0 round 14px); }
+.menu__preview img { width: 100%; height: 100%; object-fit: cover; transition: opacity .35s; }
 
 /* ── jump curtain ──────────────────────────────────────────────────── */
 .jump { position: fixed; inset: 0; z-index: 240; pointer-events: none; visibility: hidden; }
@@ -382,7 +380,7 @@ html.is-menu { --head-c: var(--paper); }
 }
 .hp img {
   position: absolute; inset: -4% 0; width: 100%; height: 108%; object-fit: cover; object-position: var(--pos, 50% 50%);
-  will-change: transform; scale: 1; transition: scale 1.6s var(--ease);
+  will-change: transform;
 }
 /* the fourth panel is a full-bleed portrait; it holds still while the others drift */
 .hp--type { background: var(--night); }
@@ -391,7 +389,6 @@ html.is-menu { --head-c: var(--paper); }
   position: absolute; left: 10%; right: 6%; top: 44%; z-index: 1;
   font-family: var(--f-serif); font-size: clamp(2.4rem, 5vw, 5.4rem); line-height: .92; color: #fff; letter-spacing: -.01em;
   text-shadow: 0 2px 30px rgba(0,0,0,.45);
-  transition: transform 1.2s var(--ease), color .6s;
 }
 .hero__panels--color .hp__courage { color: var(--paper); }
 .hero__panels--color .hp__courage::first-line { color: var(--red); }
@@ -412,24 +409,11 @@ html.is-menu { --head-c: var(--paper); }
 .hero__stage[data-active="2"] .hp:nth-child(3),
 .hero__stage[data-active="3"] .hp:nth-child(4) { flex-grow: 1.65; }
 
-/* press and hold: colour floods in, the panel under the pointer takes the
-   stage, the photos push in slowly and a shockwave leaves the pointer      */
+/* press and hold: colour floods in and the panel under the pointer expands */
 .hero.is-held .hero__stage[data-active="0"] .hp:nth-child(1),
 .hero.is-held .hero__stage[data-active="1"] .hp:nth-child(2),
 .hero.is-held .hero__stage[data-active="2"] .hp:nth-child(3),
 .hero.is-held .hero__stage[data-active="3"] .hp:nth-child(4) { flex-grow: 2.8; }
-.hero.is-held .hp img { scale: 1.08; transition-duration: 3.2s; }
-.hero.is-held .hp__courage { transform: translateY(-6%) scale(1.04); }
-.hero__wave {
-  position: absolute; left: 0; top: 0; z-index: 2; width: 40px; height: 40px; margin: -20px 0 0 -20px;
-  border-radius: 50%; border: 1.5px solid rgba(242,237,228,.9); pointer-events: none; opacity: 0;
-}
-.hero__wave.is-go { animation: heroWave 1.3s var(--ease) forwards; }
-@keyframes heroWave {
-  0%   { transform: translate(var(--wx), var(--wy)) scale(.4); opacity: .95; border-color: var(--red); }
-  100% { transform: translate(var(--wx), var(--wy)) scale(26); opacity: 0; border-color: rgba(242,237,228,.6); }
-}
-.hero__hint span { transition: opacity .3s; }
 
 .hero__shade {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -1008,7 +992,7 @@ html.is-menu { --head-c: var(--paper); }
   .hero__kicker { display: none; }
   .btn-book { height: 42px; padding: 0 18px; font-size: 14px; }
   .menu__inner { grid-template-columns: 1fr; }
-  .menu__blurb { display: none; }
+  .menu__preview { display: none; }
 
   .hero__panels { gap: 3px; }
   .hp__courage { font-size: 1.5rem; top: 30%; left: 10%; }

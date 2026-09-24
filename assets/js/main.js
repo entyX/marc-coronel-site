@@ -74,13 +74,28 @@
   }
   menuBtn.addEventListener('click', function () { root.classList.contains('is-menu') ? closeMenu() : openMenu(); });
   addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('is-menu')) closeMenu(); });
-  $$('.menu__list a').forEach(function (a) {
-    a.addEventListener('mouseenter', function () {
-      if (!preview || preview.getAttribute('src') === a.dataset.img) return;
-      preview.style.opacity = 0;
-      setTimeout(function () { preview.src = a.dataset.img; preview.style.opacity = 1; }, 180);
+  (function menuPreview() {
+    if (!preview) return;
+    var layers = $$('img', preview), front = 0, want = layers[0].getAttribute('src'), token = 0;
+    // warm every preview up front so no swap ever waits on the network
+    var warm = function () { $$('.menu__list a').forEach(function (a) { var i = new Image(); i.src = a.dataset.img; }); };
+    if (document.readyState === 'complete') warm(); else addEventListener('load', warm);
+    function show(src) {
+      if (src === want) return;
+      want = src;
+      var t = ++token, back = layers[1 - front];
+      back.src = src;
+      var go = function () {
+        if (t !== token) return;              // a newer hover already won
+        back.classList.add('is-on'); layers[front].classList.remove('is-on'); front = 1 - front;
+      };
+      if (back.decode) back.decode().then(go, go); else go();
+    }
+    $$('.menu__list a').forEach(function (a) {
+      a.addEventListener('mouseenter', function () { show(a.dataset.img); });
+      a.addEventListener('focus', function () { show(a.dataset.img); });
     });
-  });
+  }());
 
   /* ── booking form ────────────────────────────────────────────────── */
   function setIntent(v) {

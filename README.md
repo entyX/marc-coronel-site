@@ -80,6 +80,7 @@ Every photo is of Marc and comes from his own public channels or press coverage 
 | `hero-fighter`, `r-boxing`, `r-tedx-walk`, `r-hill-day`, `g-capitol-meeting`, `ch-dialysis`, `h-hospital-walk`, `l-tedx-stage`, `hon-transplant-games`, `portrait-warm` | Marc's earlier site draft (marccolnel.lovable.app), carried over from the previous version of this repo |
 | `hero-summit`, `g-summit-2`, `ch-athlete`, `g-studio`, `g-hill-meeting`, `g-hill-group` | Bold Journey interview (Apr 2025) |
 | `portrait-studio`, `portrait-black` | TEDxLogan Circle speaker graphics |
+| `m-*` (Index menu previews, pre-cropped 4:5 on Marc, not used anywhere else) | `m-intro`: FOX 11 "From kidney transplant to TED Talk"; `m-room`: UCLA Health MDChat video; `m-impact`, `m-services`: Voyage LA interview; `m-rounds`, `m-writing`, `m-platform`, `m-contact`: thumbnails from Marc's own YouTube videos; `m-opening`: TEDx talk video still |
 | `g-tedx-wide` | TEDx talk video thumbnail (YouTube) |
 | `ch-transplant` | FOX 11 Los Angeles |
 | `ch-capitol` | American Kidney Fund |

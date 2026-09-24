@@ -268,14 +268,11 @@ html.is-menu { --head-c: var(--paper); }
 }
 .btn-book:hover::before { transform: translateY(0); border-radius: 0; }
 .btn-book:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -14px rgba(226,65,47,.9); }
-.btn-book__txt { position: relative; display: block; overflow: hidden; line-height: 1.3; }
-.btn-book__txt::after {
-  content: attr(data-text); position: absolute; left: 0; top: 100%;
-}
-.btn-book__txt { transition: transform 0s; }
-.btn-book:hover .btn-book__txt { animation: roll .6s var(--ease) forwards; }
-@keyframes roll { 0% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
-.btn-book__txt { height: 1.3em; }
+.btn-book__txt { position: relative; display: block; overflow: hidden; height: 1.3em; line-height: 1.3; }
+/* the clip box stays still; only the inner label rolls up to its copy */
+.btn-book__roll { position: relative; display: block; transition: transform .6s var(--ease); }
+.btn-book__roll::after { content: attr(data-text); position: absolute; left: 0; top: 100%; }
+.btn-book:hover .btn-book__roll { transform: translateY(-100%); }
 .btn-book__dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: pulse 2.2s ease-out infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.7); } 100% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } }
 
@@ -385,13 +382,6 @@ html.is-menu { --head-c: var(--paper); }
 /* the fourth panel is a full-bleed portrait; it holds still while the others drift */
 .hp--type { background: var(--night); }
 .hp--type img { inset: 0; height: 100%; }
-.hp__courage {
-  position: absolute; left: 10%; right: 6%; top: 44%; z-index: 1;
-  font-family: var(--f-serif); font-size: clamp(2.4rem, 5vw, 5.4rem); line-height: .92; color: #fff; letter-spacing: -.01em;
-  text-shadow: 0 2px 30px rgba(0,0,0,.45);
-}
-.hero__panels--color .hp__courage { color: var(--paper); }
-.hero__panels--color .hp__courage::first-line { color: var(--red); }
 
 /* the colour layer is painted in by the cursor */
 .hero__panels--color {
@@ -995,7 +985,6 @@ html.is-menu { --head-c: var(--paper); }
   .menu__preview { display: none; }
 
   .hero__panels { gap: 3px; }
-  .hp__courage { font-size: 1.5rem; top: 30%; left: 10%; }
   .hero__bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
   .hero__foot .hero__hint { display: none; }
   .hero__foot { right: var(--pad); justify-content: flex-end; }

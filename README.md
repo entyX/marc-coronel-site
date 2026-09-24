@@ -28,7 +28,7 @@ the page falls back to a complete, static, readable document.
 | # | Section | What it does |
 |---|---|---|
 | — | Loader | "MARC" on four shutters that echo the four panels of his LinkedIn banner. The four roles play one at a time; each is fully out before the next comes in. Click, Escape or Enter skips it. It's shorter on repeat visits in the same session. |
-| 00 | Hero | Four moments, no captions. The panels are monochrome and the cursor paints colour back in. Press-and-hold floods the colour and expands the panel under the pointer. The fourth panel ("The Courage to Ask") is a full-bleed portrait that doesn't parallax. |
+| 00 | Hero | Four moments, no captions. The panels are monochrome and the cursor paints colour back in. Press-and-hold floods the colour and expands the panel under the pointer. The fourth panel is a full-bleed portrait that doesn't parallax. |
 | 01 | Who he is | A manifesto whose words light up as you scroll, with photo "pills" inline, then a portrait and key facts. |
 | 02 | Four ways to read him | Fighter, Speaker, Patient Advocate, Strategist. Hovering a line shows a photo that follows the cursor (fixed to the viewport, re-checked on scroll so it can't get stuck). Each row is a link: Fighter → rounds, Speaker → talks, Advocate → receipts, Strategist → services. |
 | — | The pause | CDC statistic "1 in 7", then a quote. |

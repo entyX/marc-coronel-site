@@ -562,15 +562,18 @@
   }
 
   /* story mode: rest on a round and it opens to fill the screen.
-     A small ring on the photo fills up first so the pause feels intended. */
+     A small ring on the photo fills up first so the pause feels intended.
+     The photo itself travels from the card to its place in one move while
+     the dark panel fades in behind it, so nothing grows twice.           */
   var story = (function () {
-    var el = $('#story'), pin = $('#roundsPin'), sImg = $('#storyImg');
+    var el = $('#story'), pin = $('#roundsPin'), sImg = $('#storyImg'), media = $('.story__media', el), bg = $('.story__bg', el);
     var parts = ['#storyMeta', '#storyTitle', '#storyWhat', '#storyBuilt', '.story__hint'].map(function (s) { return $(s, el); });
-    var IDLE = 4000, api = { open: false }, shownFor = -1, kb = null, anim = null;
+    var IDLE = 4000, api = { open: false }, shownFor = -1, anim = null;
     function rectOf(card) {
       var r = $('.round__media', card).getBoundingClientRect(), p = pin.getBoundingClientRect();
-      return 'inset(' + (r.top - p.top) + 'px ' + (p.right - r.right) + 'px ' + (p.bottom - r.bottom) + 'px ' + (r.left - p.left) + 'px round 14px)';
+      return { left: r.left - p.left, top: r.top - p.top, width: r.width, height: r.height, borderRadius: 14 };
     }
+    var full = { left: 0, top: 0, width: '55.56%', height: '100%', borderRadius: 0 };
     function open(i) {
       var card = cards[i], src = $('.round__media img', card);
       api.open = true; shownFor = i;
@@ -584,20 +587,21 @@
       root.dataset.head = 'dark';
       if (anim) anim.kill();
       anim = gsap.timeline()
-        .fromTo(el, { clipPath: rectOf(card) }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: 1.15, ease: 'expo.inOut' })
-        .fromTo(sImg, { scale: 1.2 }, { scale: 1.02, duration: 1.6, ease: 'expo.out' }, 0)
-        .fromTo(parts, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'expo.out', stagger: .08 }, .55);
-      kb = gsap.to(sImg, { scale: 1.1, duration: 14, ease: 'none', delay: 1.6 });
+        .fromTo(media, rectOf(card), Object.assign({ duration: 1.1, ease: 'expo.inOut' }, full), 0)
+        .fromTo(bg, { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power2.out' }, .1)
+        .fromTo(el, { '--shade': 0 }, { '--shade': 1, duration: .8, ease: 'power2.out' }, .4)
+        .fromTo(parts, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'expo.out', stagger: .08 }, .6);
     }
     function close() {
       if (!api.open) return;
       api.open = false; lastScroll = performance.now();
-      if (kb) kb.kill();
       if (anim) anim.kill();
       var card = cards[shownFor];
       anim = gsap.timeline({ onComplete: function () { el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true'); if (roundsST && roundsST.isActive) root.dataset.head = headTheme(); } })
         .to(parts, { opacity: 0, y: -20, duration: .3, ease: 'power2.in', stagger: .03 }, 0)
-        .to(el, { clipPath: rectOf(card), duration: .8, ease: 'expo.inOut' }, .1);
+        .to(el, { '--shade': 0, duration: .3 }, 0)
+        .to(bg, { opacity: 0, duration: .6, ease: 'power2.inOut' }, .15)
+        .to(media, Object.assign({ duration: .8, ease: 'expo.inOut' }, rectOf(card)), .1);
     }
     api.close = close;
     api.tick = function () {
@@ -693,7 +697,7 @@
     });
     var tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '#roomPin', pin: true, start: 'top top', end: '+=280%', scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
+        trigger: '#roomPin', pin: true, start: 'top top', end: '+=420%', scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
         onUpdate: function (self) {
           var k = clamp(Math.floor(self.progress * n * 1.05), 0, n - 1);
           if (k !== lastCap) {
@@ -705,10 +709,10 @@
       }
     });
     flies.forEach(function (f, i) {
-      var at = i * .6;
-      tl.to(f, { z: 650, ease: 'none', duration: 3 }, at)
-        .to(f, { opacity: 1, ease: 'none', duration: .6 }, at)
-        .to(f, { opacity: 0, ease: 'none', duration: .5 }, at + 2.5);
+      var at = i * .8;
+      tl.to(f, { z: 260, ease: 'none', duration: 3 }, at)
+        .to(f, { opacity: 1, ease: 'none', duration: .4 }, at)
+        .to(f, { opacity: 0, ease: 'none', duration: .4 }, at + 2.6);
     });
     tl.fromTo('.room__title', { scale: 1.1 }, { scale: .86, ease: 'none', duration: tl.duration() }, 0);
     return function () { gsap.set(flies, { clearProps: 'all' }); };
@@ -741,9 +745,6 @@
       onToggle: function (s) { inView = s.isActive; if (prog) s.isActive ? prog.play() : prog.pause(); } });
     $('#qNext').addEventListener('click', function () { go(qi + 1); });
     $('#qPrev').addEventListener('click', function () { go(qi - 1); });
-    var q = $('#quotes'), sx = null;
-    q.addEventListener('pointerdown', function (e) { sx = e.clientX; });
-    addEventListener('pointerup', function (e) { if (sx === null) return; var d = e.clientX - sx; sx = null; if (Math.abs(d) > 50) go(qi + (d < 0 ? 1 : -1)); });
     restart();
   }());
 

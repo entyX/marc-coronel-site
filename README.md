@@ -32,7 +32,7 @@ the page falls back to a complete, static, readable document.
 | 01 | Who he is | A manifesto whose words light up as you scroll, with photo "pills" inline, then a portrait and key facts. |
 | 02 | Four ways to read him | Fighter, Speaker, Patient Advocate, Strategist. Hovering a line shows a photo that follows the cursor (fixed to the viewport, re-checked on scroll so it can't get stuck). Each row is a link: Fighter → rounds, Speaker → talks, Advocate → receipts, Strategist → services. |
 | — | The pause | CDC statistic "1 in 7", then a quote. |
-| 03 | Eight rounds | Vertical scroll drives a horizontal track. Each round moves from event to what it built. The background tone shifts round by round (darker through dialysis, dawn at the transplant). Chapter buttons and arrow keys jump between rounds. **Story mode:** rest on a round for ~4s (a ring fills on the photo) and it opens full-screen; any scroll, key or click closes it. Each round opens once per visit. |
+| 03 | Eight rounds | Vertical scroll drives a horizontal track. Each round moves from what happened to what he took from it. The background tone shifts round by round (darker through dialysis, dawn at the transplant). Chapter buttons and arrow keys jump between rounds. **Story mode:** rest on a round for ~4s (a ring fills on the photo) and it opens full-screen; any scroll, key or click closes it. Each round opens once per visit. |
 | — | The hinge | A small frame scales up to full screen (scale, not clip, so it stays centred and sharp): "The transplant wasn't the ending. It was the proof." Then the post-transplant hallway photo beside the UCLA Health quote. |
 | 04 | The receipts | Six counters, none of which repeat a number used earlier in the story, then a recognition list beside a sticky Transplant Games photo. |
 | 05 | In the room | A pinned gallery where nine event photos (none used elsewhere) fly toward you as you scroll. |
@@ -45,7 +45,6 @@ the page falls back to a complete, static, readable document.
 **Persistent UI:**
 - "Marc Coronel" top left.
 - One filled red "Book Marc" button top right.
-- A "Skip story" link.
 - An Index menu covering the full screen, with a photo preview of the hovered section.
 - A jump curtain: links to far-off sections drop four shutters, move instantly behind them, settle every scrubbed animation, then lift. Short hops still smooth-scroll.
 - A progress rail with section ticks.
@@ -80,7 +79,7 @@ Every photo is of Marc and comes from his own public channels or press coverage 
 | `hero-fighter`, `r-boxing`, `r-tedx-walk`, `r-hill-day`, `g-capitol-meeting`, `ch-dialysis`, `h-hospital-walk`, `l-tedx-stage`, `hon-transplant-games`, `portrait-warm` | Marc's earlier site draft (marccolnel.lovable.app), carried over from the previous version of this repo |
 | `hero-summit`, `g-summit-2`, `ch-athlete`, `g-studio`, `g-hill-meeting`, `g-hill-group` | Bold Journey interview (Apr 2025) |
 | `portrait-studio`, `portrait-black` | TEDxLogan Circle speaker graphics |
-| `m-*` (Index menu previews, pre-cropped 4:5 on Marc, not used anywhere else) | `m-intro`: FOX 11 "From kidney transplant to TED Talk"; `m-room`: UCLA Health MDChat video; `m-impact`, `m-services`: Voyage LA interview; `m-rounds`, `m-writing`, `m-platform`, `m-contact`: thumbnails from Marc's own YouTube videos; `m-opening`: TEDx talk video still |
+| `m-*` (Index menu previews, pre-cropped 4:5 on Marc from full-resolution originals) | `m-opening`, `m-writing`: Voyage LA interview; `m-room`, `m-services`, `m-platform`: Bold Journey interview; `m-intro`: TEDxLogan Circle speaker graphic; `m-impact`: State Capitol, Sacramento (Voyage LA); `m-rounds`: FOX 11 Los Angeles; `m-contact`: same source as `portrait-warm` |
 | `g-tedx-wide` | TEDx talk video thumbnail (YouTube) |
 | `ch-transplant` | FOX 11 Los Angeles |
 | `ch-capitol` | American Kidney Fund |

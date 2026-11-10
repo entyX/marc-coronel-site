@@ -14,8 +14,9 @@
 
   var root   = document.documentElement;
   var body   = document.body;
-  var calm   = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var calm   = matchMedia('(prefers-reduced-motion: reduce)').matches || root.getAttribute('data-motion') === 'reduce';
   var fine   = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var glove  = fine && !root.hasAttribute('data-cursor-off');
   var params = new URLSearchParams(location.search);
 
   var hasGsap = !!(window.gsap && window.ScrollTrigger);
@@ -95,6 +96,47 @@
       a.addEventListener('mouseenter', function () { show(a.dataset.img); });
       a.addEventListener('focus', function () { show(a.dataset.img); });
     });
+  }());
+
+  /* ── accessibility panel ─────────────────────────────────────────────
+     Text size, contrast, link underlines, paused marquees and the
+     standard cursor apply live. Reduced motion needs a reload, because
+     the pinned scroll scenes are built once at start-up.               */
+  (function a11y() {
+    var btn = $('#a11yBtn'), panel = $('#a11y'); if (!btn || !panel) return;
+    var KEY = 'mc-a11y', s = {};
+    try { s = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) {}
+    var ATTR = { contrast: ['data-contrast', 'high'], underline: ['data-underline', '1'], still: ['data-still', '1'], cursor: ['data-cursor-off', '1'], motion: ['data-motion', 'reduce'] };
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} }
+    function paint() {
+      $$('[data-a11y="text"]', panel).forEach(function (b) { b.setAttribute('aria-pressed', String((s.text || '') === b.dataset.val)); });
+      $$('.a11y__switch', panel).forEach(function (b) { b.setAttribute('aria-pressed', String(!!s[b.dataset.a11y])); });
+    }
+    function apply(k) {
+      if (k === 'text') { s.text ? root.setAttribute('data-text', s.text) : root.removeAttribute('data-text'); }
+      else if (ATTR[k]) { s[k] ? root.setAttribute(ATTR[k][0], ATTR[k][1]) : root.removeAttribute(ATTR[k][0]); }
+      if (k === 'cursor') { root.classList.toggle('has-cursor', glove && !s.cursor); }
+      if (window.ScrollTrigger && (k === 'text')) setTimeout(function () { ScrollTrigger.refresh(); }, 60);
+    }
+    function open() { panel.classList.add('is-open'); panel.setAttribute('aria-hidden', 'false'); btn.setAttribute('aria-expanded', 'true'); setTimeout(function () { $('#a11yClose').focus(); }, 50); }
+    function close(refocus) { if (!panel.classList.contains('is-open')) return; panel.classList.remove('is-open'); panel.setAttribute('aria-hidden', 'true'); btn.setAttribute('aria-expanded', 'false'); if (refocus) btn.focus(); }
+    btn.addEventListener('click', function () { panel.classList.contains('is-open') ? close(true) : open(); });
+    $('#a11yClose').addEventListener('click', function () { close(true); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') close(true); });
+    document.addEventListener('pointerdown', function (e) { if (!panel.contains(e.target) && !btn.contains(e.target)) close(false); });
+    panel.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-a11y]'); if (!b) return;
+      var k = b.dataset.a11y;
+      if (k === 'text') s.text = b.dataset.val; else s[k] = !s[k];
+      save(); paint(); apply(k);
+      if (k === 'motion') setTimeout(function () { location.reload(); }, 250);
+    });
+    $('#a11yReset').addEventListener('click', function () {
+      var hadMotion = !!s.motion; s = {}; save(); paint();
+      ['text', 'contrast', 'underline', 'still', 'cursor', 'motion'].forEach(apply);
+      if (hadMotion) setTimeout(function () { location.reload(); }, 250);
+    });
+    paint();
   }());
 
   /* ── booking form ────────────────────────────────────────────────── */
@@ -292,7 +334,20 @@
   var cursor = $('#cursor'), cLabel = $('#cursorLabel'), cLabelTxt = $('span', cLabel);
   var mouse = { x: -1, y: -1 };
   if (fine) {
+    // the roles float still needs the pointer position even with the standard cursor
+    addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  }
+  if (glove) {
     root.classList.add('has-cursor');
+    var gl = $('.cursor__glove', cursor), hit = $('.cursor__hit', cursor);
+    // a click throws a jab: the glove snaps forward and a burst lands where you clicked
+    addEventListener('pointerdown', function (e) {
+      if (e.button !== 0 || root.hasAttribute('data-cursor-off')) return;
+      gsap.timeline({ overwrite: true })
+        .to(gl, { x: 5, y: -9, scale: 1.3, rotation: -8, duration: .08, ease: 'power4.out' })
+        .to(gl, { x: 0, y: 0, scale: 1, rotation: 0, duration: .45, ease: 'elastic.out(1, .45)', clearProps: 'transform' });
+      gsap.fromTo(hit, { scale: .2, opacity: 1, rotation: 0 }, { scale: 1.25, opacity: 0, rotation: 30, duration: .45, ease: 'power3.out' });
+    });
     var cx = gsap.quickTo(cursor, 'x', { duration: .18, ease: 'power3' }),
         cy = gsap.quickTo(cursor, 'y', { duration: .18, ease: 'power3' }),
         lx = gsap.quickTo(cLabel, 'x', { duration: .45, ease: 'power3' }),
@@ -371,12 +426,14 @@
       ltl.fromTo(r, { y: 0, yPercent: 110, opacity: 0 }, { y: 0, yPercent: 0, opacity: 1, duration: slot * .42, ease: 'power3.out' }, at);
       if (i < roles.length - 1) ltl.to(r, { yPercent: -110, opacity: 0, duration: slot * .3, ease: 'power3.in' }, at + slot * .66);
     });
+    // the name leaves fully (masked, then faded) before the curtain opens on the hero's own name
     ltl.addLabel('out', hold + .6)
-       .to(nameChars, { yPercent: -115, duration: .7, ease: 'power3.in', stagger: .03 }, 'out')
-       .to(['.loader__kicker', '.loader__roles', '.loader__count', '.loader__skip'], { opacity: 0, duration: .4 }, 'out')
-       .to('.loader__shutters span', { scaleY: 0, duration: 1.1, ease: 'expo.inOut', stagger: .08 }, 'out+=.35')
-       .add(heroIn(0), 'out+=.55')
-       .call(function () { if (lenis) lenis.start(); loader.remove(); }, null, 'out+=1.7');
+       .to(nameChars, { yPercent: -120, duration: .55, ease: 'power3.in', stagger: .03 }, 'out')
+       .to(['.loader__kicker', '.loader__roles', '.loader__count', '.loader__skip'], { opacity: 0, duration: .35 }, 'out')
+       .to('.loader__inner', { opacity: 0, duration: .25 }, 'out+=.5')
+       .to('.loader__shutters span', { scaleY: 0, duration: 1.1, ease: 'expo.inOut', stagger: .08 }, 'out+=.6')
+       .add(heroIn(0), 'out+=.85')
+       .call(function () { if (lenis) lenis.start(); loader.remove(); }, null, 'out+=2');
     var skip = function () { if (ltl.time() < ltl.labels.out) ltl.seek('out'); };
     loader.addEventListener('click', skip);
     addEventListener('keydown', function (e) { if (e.key === 'Escape' || e.key === 'Enter') skip(); }, { once: true });
@@ -429,7 +486,7 @@
     .to('.hero__stage', { scale: .94, borderRadius: 24, ease: 'none' }, 0);
 
   /* ── rounded "rise" on sections that change colour ───────────────── */
-  $$('.pause, .impact, .room, .platform, .lanes, .contact').forEach(function (s) {
+  $$('.room, .roles, .pause, .impact, .platform, .lanes, .contact').forEach(function (s) {
     gsap.fromTo(s, { '--r': '9vw' }, { '--r': '0vw', ease: 'none', scrollTrigger: { trigger: s, start: 'top bottom', end: 'top 20%', scrub: true } });
   });
 
@@ -540,7 +597,8 @@
     var end = +b.dataset.count, o = { v: 0 };
     b.textContent = '0';
     ScrollTrigger.create({ trigger: b, start: 'top 88%', once: true, onEnter: function () {
-      gsap.to(o, { v: end, duration: end > 100 ? 2.2 : 1.6, ease: 'expo.out', onUpdate: function () { b.textContent = Math.round(o.v); } });
+      // climb from zero; big numbers take longer so the count is actually visible
+      gsap.to(o, { v: end, duration: end > 100 ? 2.8 : 1.8, ease: 'power3.out', onUpdate: function () { b.textContent = Math.round(o.v); } });
     } });
   });
 
@@ -566,7 +624,7 @@
   var story = (function () {
     var el = $('#story'), pin = $('#roundsPin'), sImg = $('#storyImg');
     var parts = ['#storyMeta', '#storyTitle', '#storyWhat', '#storyBuilt', '.story__hint'].map(function (s) { return $(s, el); });
-    var IDLE = 4000, api = { open: false }, shownFor = -1, kb = null, anim = null;
+    var IDLE = 1700, api = { open: false }, shownFor = -1, kb = null, anim = null;
     function rectOf(card) {
       var r = $('.round__media', card).getBoundingClientRect(), p = pin.getBoundingClientRect();
       return 'inset(' + (r.top - p.top) + 'px ' + (p.right - r.right) + 'px ' + (p.bottom - r.bottom) + 'px ' + (r.left - p.left) + 'px round 14px)';
@@ -584,10 +642,10 @@
       root.dataset.head = 'dark';
       if (anim) anim.kill();
       anim = gsap.timeline()
-        .fromTo(el, { clipPath: rectOf(card) }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: 1.15, ease: 'expo.inOut' })
-        .fromTo(sImg, { scale: 1.2 }, { scale: 1.02, duration: 1.6, ease: 'expo.out' }, 0)
-        .fromTo(parts, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'expo.out', stagger: .08 }, .55);
-      kb = gsap.to(sImg, { scale: 1.1, duration: 14, ease: 'none', delay: 1.6 });
+        .fromTo(el, { clipPath: rectOf(card) }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: .7, ease: 'expo.inOut' })
+        .fromTo(sImg, { scale: 1.15 }, { scale: 1.02, duration: 1, ease: 'expo.out' }, 0)
+        .fromTo(parts, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .05 }, .3);
+      kb = gsap.to(sImg, { scale: 1.1, duration: 14, ease: 'none', delay: 1 });
     }
     function close() {
       if (!api.open) return;
@@ -596,8 +654,8 @@
       if (anim) anim.kill();
       var card = cards[shownFor];
       anim = gsap.timeline({ onComplete: function () { el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true'); if (roundsST && roundsST.isActive) root.dataset.head = headTheme(); } })
-        .to(parts, { opacity: 0, y: -20, duration: .3, ease: 'power2.in', stagger: .03 }, 0)
-        .to(el, { clipPath: rectOf(card), duration: .8, ease: 'expo.inOut' }, .1);
+        .to(parts, { opacity: 0, y: -20, duration: .2, ease: 'power2.in', stagger: .02 }, 0)
+        .to(el, { clipPath: rectOf(card), duration: .55, ease: 'expo.inOut' }, .05);
     }
     api.close = close;
     api.tick = function () {
@@ -608,7 +666,8 @@
         if (!roundsST.isActive) shownFor = -1;
         return;
       }
-      var k = clamp((performance.now() - lastScroll - 400) / IDLE, 0, 1);
+      // ~2s total: a short settle, then the ring fills
+      var k = clamp((performance.now() - lastScroll - 300) / IDLE, 0, 1);
       cards.forEach(function (c) { if (c !== card) c.classList.remove('is-idle'); });
       card.classList.toggle('is-idle', k > 0);
       card.style.setProperty('--idle', k.toFixed(3));
@@ -627,7 +686,7 @@
       scrollTrigger: {
         trigger: rounds, pin: '#roundsPin', start: 'top top',
         end: function () { return '+=' + dist(); },
-        scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
+        scrub: 1, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 2,
         onUpdate: function (self) {
           bar.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')';
           var x = -dist() * self.progress, focus = innerWidth * .42 - x, best = 0, bd = Infinity;
@@ -675,7 +734,7 @@
   /* ── the hinge: a small frame opens into the whole screen ────────────
      The full-screen frame scales from the centre instead of re-clipping,
      so the photo stays centred, sharp at rest, and composited throughout. */
-  gsap.timeline({ scrollTrigger: { trigger: '#hingePin', pin: true, start: 'top top', end: '+=160%', scrub: 1, anticipatePin: 1 } })
+  gsap.timeline({ scrollTrigger: { trigger: '#hingePin', pin: true, start: 'top top', end: '+=160%', scrub: 1, anticipatePin: 1, refreshPriority: 1 } })
     .fromTo('#hingeFrame', { scale: .38, borderRadius: 28 }, { scale: 1, borderRadius: 0, ease: 'power2.inOut', duration: 1 }, 0)
     .fromTo('#hingeFrame img', { scale: 1.12 }, { scale: 1, ease: 'power2.inOut', duration: 1 }, 0)
     .fromTo('#hingeFrame', { '--dim': .1 }, { '--dim': 1, duration: .6 }, .35)
@@ -693,7 +752,8 @@
     });
     var tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '#roomPin', pin: true, start: 'top top', end: '+=280%', scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
+        // the gallery now sits above the rounds, so its pin must be measured first
+        trigger: '#roomPin', pin: true, start: 'top top', end: '+=280%', scrub: 1, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 3,
         onUpdate: function (self) {
           var k = clamp(Math.floor(self.progress * n * 1.05), 0, n - 1);
           if (k !== lastCap) {
@@ -774,7 +834,7 @@
     measure(); addEventListener('resize', measure);
     ScrollTrigger.create({ trigger: '.coda', start: 'top bottom', end: 'bottom top', onToggle: function (s) { vis = s.isActive; } });
     gsap.ticker.add(function () {
-      if (!vis) return;
+      if (!vis || root.hasAttribute('data-still')) return;
       var v = lenis ? Math.abs(lenis.velocity) : 0;
       x -= .7 + Math.min(v, 60) * .25;
       if (x <= -half) x += half;

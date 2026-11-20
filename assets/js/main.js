@@ -26,7 +26,7 @@
 
   var yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* numbered rounds: R1…R8 outline numerals */
+  /* numbered rounds: R1…R12 outline numerals */
   $$('.round').forEach(function (r, i) { r.setAttribute('data-n', ('0' + (i + 1)).slice(-2)); });
 
   /* ── shared: scrolling ───────────────────────────────────────────── */
@@ -602,7 +602,7 @@
     } });
   });
 
-  /* ── EIGHT ROUNDS: vertical scroll drives a horizontal track ─────── */
+  /* ── TWELVE ROUNDS: vertical scroll drives a horizontal track ─────── */
   var rounds = $('#rounds'), track = $('#roundsTrack'), cards = $$('.round'), idx = $$('#roundsIndex li'), bar = $('#roundsBar');
   var roundsST = null, activeRound = -1;
   function headTheme() { return rounds.classList.contains('is-dark') ? 'dark' : 'light'; }

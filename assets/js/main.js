@@ -715,22 +715,33 @@
 
   mm.add(DESK, function () {
     var dist = function () { return track.scrollWidth - innerWidth; };
+    // The pin runs a little past the end of the track (HOLD), so the last
+    // round gets the same rest-to-open window as every other one. Without it
+    // you leave the pinned section the moment R12 arrives. The track motion
+    // stays a plain tween over its own distance, because the per-card photo
+    // reveals use it as their containerAnimation.
+    var HOLD = .12;
+    var pinST = ScrollTrigger.create({
+      trigger: rounds, pin: '#roundsPin', start: 'top top',
+      end: function () { return '+=' + dist() * (1 + HOLD); },
+      invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 2,
+      onLeave: function () { story.close(true); }, onLeaveBack: function () { story.close(true); }
+    });
     var tween = gsap.to(track, {
       x: function () { return -dist(); }, ease: 'none',
       scrollTrigger: {
-        trigger: rounds, pin: '#roundsPin', start: 'top top',
+        trigger: rounds, start: 'top top',
         end: function () { return '+=' + dist(); },
-        scrub: 1, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 2,
+        scrub: 1, invalidateOnRefresh: true, refreshPriority: 1,
         onUpdate: function (self) {
           bar.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')';
           var x = -dist() * self.progress, focus = innerWidth * .42 - x, best = 0, bd = Infinity;
           cards.forEach(function (c, k) { var d = Math.abs(c.offsetLeft + c.offsetWidth * .3 - focus); if (d < bd) { bd = d; best = k; } });
           setRound(best);
-        },
-        onLeave: function () { story.close(true); }, onLeaveBack: function () { story.close(true); }
+        }
       }
     });
-    roundsST = tween.scrollTrigger;
+    roundsST = pinST;
     cards.forEach(function (c) {
       var img = $('.round__media img', c);
       gsap.fromTo(img, { xPercent: -14 }, { xPercent: 0, ease: 'none', scrollTrigger: { containerAnimation: tween, trigger: c, start: 'left right', end: 'right left', scrub: true } });
@@ -753,7 +764,7 @@
       if (!roundsST) { scrollToTarget(cards[i], { offset: -80 }); return; }
       var d = track.scrollWidth - innerWidth;
       var want = clamp((cards[i].offsetLeft + cards[i].offsetWidth * .3 - innerWidth * .42) / d, 0, 1);
-      scrollToTarget(roundsST.start + want * (roundsST.end - roundsST.start), { duration: 1.4 });
+      scrollToTarget(roundsST.start + want * d, { duration: 1.4 });
     });
   });
   addEventListener('keydown', function (e) {

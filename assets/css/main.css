@@ -297,13 +297,16 @@ html.is-menu { --head-c: var(--paper); }
 /* ── index menu ────────────────────────────────────────────────────── */
 .menu {
   position: fixed; inset: 0; z-index: 110; visibility: hidden; color: var(--paper);
+  /* hold visibility until the closing circle finishes, so closing animates too */
+  transition: visibility 0s linear 1s;
 }
 .menu__bg {
   position: absolute; inset: 0; background: var(--night);
   clip-path: circle(0% at calc(100% - 180px) 38px);
-  transition: clip-path .9s var(--ease-io);
+  transition: clip-path .8s var(--ease-io) .2s;
 }
-.is-menu .menu { visibility: visible; }
+.is-menu .menu { visibility: visible; transition-delay: 0s; }
+.is-menu .menu__bg { transition: clip-path .9s var(--ease-io); }
 .is-menu .menu__bg { clip-path: circle(150% at calc(100% - 180px) 38px); }
 .menu__inner {
   position: relative; height: 100%; display: grid; grid-template-columns: 1.3fr 1fr; gap: 4vw;
@@ -314,12 +317,12 @@ html.is-menu { --head-c: var(--paper); }
   display: flex; align-items: baseline; gap: 18px; padding: .06em 0;
   font-weight: 800; font-stretch: 66%; text-transform: uppercase; letter-spacing: -.01em;
   font-size: clamp(2.2rem, 6.4vh, 5rem); line-height: 1.02;
-  transform: translateY(105%); transition: transform .8s var(--ease), color .3s;
+  transform: translateY(105%); transition: transform .45s cubic-bezier(.55, 0, .75, .2), color .3s;
 }
 .menu__list a i { font-family: var(--f-mono); font-style: normal; font-weight: 400; font-size: var(--fs-label-l); letter-spacing: .1em; color: var(--mute-l); }
 .menu__list a:hover { color: var(--acc); }
 .menu__list a:hover span { font-family: var(--f-serif); font-style: italic; text-transform: none; font-weight: 400; font-stretch: 100%; }
-.is-menu .menu__list a { transform: none; }
+.is-menu .menu__list a { transform: none; transition: transform .8s var(--ease), color .3s; }
 .is-menu .menu__list li:nth-child(1) a { transition-delay: .18s; }
 .is-menu .menu__list li:nth-child(2) a { transition-delay: .22s; }
 .is-menu .menu__list li:nth-child(3) a { transition-delay: .26s; }
@@ -332,9 +335,9 @@ html.is-menu { --head-c: var(--paper); }
 .is-menu .menu__list li:nth-child(10) a { transition-delay: .54s; }
 .menu__preview {
   aspect-ratio: 4 / 5; max-height: 70vh; border-radius: 14px; overflow: hidden; justify-self: end; width: min(100%, 460px);
-  clip-path: inset(100% 0 0 0 round 14px); transition: clip-path 1s var(--ease-io) .25s;
+  clip-path: inset(0 0 100% 0 round 14px); transition: clip-path .55s var(--ease-io);
 }
-.is-menu .menu__preview { clip-path: inset(0 0 0 0 round 14px); }
+.is-menu .menu__preview { clip-path: inset(0 0 0 0 round 14px); transition: clip-path 1s var(--ease-io) .25s; }
 .menu__preview { position: relative; background: var(--ink-2); }
 /* two stacked layers crossfade, so a swap never shows an empty frame */
 .menu__preview img {
@@ -360,10 +363,10 @@ html.is-menu { --head-c: var(--paper); }
 .menu__foot {
   grid-column: 1 / -1; display: flex; gap: 28px; flex-wrap: wrap; align-self: end;
   font-family: var(--f-mono); font-size: var(--fs-label-l); letter-spacing: .12em; text-transform: uppercase; color: var(--mute-l);
-  opacity: 0; transition: opacity .6s .5s;
+  opacity: 0; transition: opacity .25s;
 }
 .menu__foot a:hover { color: var(--paper); }
-.is-menu .menu__foot { opacity: 1; }
+.is-menu .menu__foot { opacity: 1; transition: opacity .6s .5s; }
 .is-menu .rail, .is-menu .head__link, .is-menu .head__sound { opacity: 0; pointer-events: none; }
 
 /* ── progress rail ─────────────────────────────────────────────────── */
@@ -1236,14 +1239,14 @@ html[data-still] .marquee__track, html[data-still] .btn-book__dot, html[data-sti
 .worked span { color: var(--mute); font-size: var(--fs-small); }
 
 /* ── metrics: the 966 tile carries the photo ──────────────────────────── */
-.metric--photo { grid-column: span 2; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(18px, 2.4vw, 34px); align-items: center; }
+.metric--photo { grid-column: 1 / span 2; grid-row: span 2; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: clamp(18px, 2.4vw, 40px); align-items: center; }
 .metric__img { border-radius: 14px; overflow: hidden; aspect-ratio: 3 / 4; background: var(--sand); }
 .metric__img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
 .metric__body { display: grid; gap: 14px; }
 .metric--photo .metric__n { font-size: clamp(5rem, 11vw, 11.5rem); }
 .metrics .metric:nth-child(n) { padding-left: 0; border-left: 0; }
-/* desktop grid: 966 spans two columns, so the dividers sit on tiles 2, 4 and 5 */
-.metrics .metric:nth-child(2), .metrics .metric:nth-child(4), .metrics .metric:nth-child(5) { padding-left: clamp(16px, 2vw, 32px); border-left: 1px solid var(--line); }
+/* desktop grid: 966 fills two columns and two rows, so dividers sit on tiles 2, 3, 5 and 6 */
+.metrics .metric:nth-child(2), .metrics .metric:nth-child(3), .metrics .metric:nth-child(5), .metrics .metric:nth-child(6) { padding-left: clamp(16px, 2vw, 32px); border-left: 1px solid var(--line); }
 .metric__n b { font-variant-numeric: tabular-nums; }
 
 /* ── platform ─────────────────────────────────────────────────────────── */
@@ -1267,16 +1270,18 @@ html[data-still] .marquee__track, html[data-still] .btn-book__dot, html[data-sti
 
 @media (max-width: 900px) {
   .head__a11y-txt { display: none; }
-  .metric--photo { grid-column: 1 / -1; }
+  .metric--photo { grid-column: 1 / -1; grid-row: auto; }
   .metrics .metric:nth-child(n) { padding-left: 0; border-left: 0; }
-  .metrics .metric:nth-child(odd):not(:first-child) { padding-left: 16px; border-left: 1px solid var(--line); }
+  /* 34-0 runs full width under the photo, so the other four pair up evenly */
+  .metrics .metric:nth-child(2) { grid-column: 1 / -1; }
+  .metrics .metric:nth-child(4), .metrics .metric:nth-child(6) { padding-left: 16px; border-left: 1px solid var(--line); }
   .worked { grid-template-columns: 1fr; }
   .worked li:nth-child(even) { padding-left: 0; border-left: 0; }
 }
 @media (max-width: 520px) {
   .metric--photo { grid-template-columns: 1fr; }
   .metric__img { max-width: 260px; }
-  .metrics .metric:nth-child(odd):not(:first-child) { padding-left: 0; border-left: 0; }
+  .metrics .metric:nth-child(4), .metrics .metric:nth-child(6) { padding-left: 0; border-left: 0; }
   .contact__top { grid-template-columns: 1fr; }
   .contact__top .contact__portrait { order: -1; margin: 0; }
 }

@@ -644,6 +644,7 @@
       el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false');
       root.dataset.head = 'dark';
       if (anim) anim.kill();
+      gsap.set(el, { opacity: 1 }); gsap.set(sImg, { clearProps: 'transform' });
       // quicker than the original pass: the whole open lands in about a second
       anim = gsap.timeline()
         .fromTo(media, rectOf(card), Object.assign({ duration: .75, ease: 'expo.inOut' }, full), 0)
@@ -655,12 +656,17 @@
       if (!api.open) return;
       api.open = false; lastScroll = performance.now();
       if (anim) anim.kill();
-      var card = cards[shownFor];
-      anim = gsap.timeline({ onComplete: function () { el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true'); if (roundsST && roundsST.isActive) root.dataset.head = headTheme(); } })
-        .to(parts, { opacity: 0, y: -20, duration: .2, ease: 'power2.in', stagger: .02 }, 0)
-        .to(el, { '--shade': 0, duration: .2 }, 0)
-        .to(bg, { opacity: 0, duration: .4, ease: 'power2.inOut' }, .1)
-        .to(media, Object.assign({ duration: .55, ease: 'expo.inOut' }, rectOf(card)), .05);
+      // Flying the photo back into its card fought the card's own parallax and
+      // clip (and the track keeps moving if you scroll), so it stuttered. The
+      // overlay now simply dissolves over the card that is already underneath.
+      anim = gsap.timeline({ onComplete: function () {
+          el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
+          gsap.set(el, { opacity: 1 }); gsap.set(sImg, { clearProps: 'transform' });
+          if (roundsST && roundsST.isActive) root.dataset.head = headTheme();
+        } })
+        .to(parts, { opacity: 0, y: -14, duration: .22, ease: 'power2.in', stagger: .015 }, 0)
+        .to(sImg, { scale: 1.04, duration: .5, ease: 'power2.out' }, 0)
+        .to(el, { opacity: 0, duration: .34, ease: 'power2.inOut' }, .06);
     }
     api.close = close;
     api.tick = function () {

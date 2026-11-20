@@ -73,9 +73,9 @@ Every photo is of Marc and comes from his own public channels or press coverage 
 
 | Files | Source |
 |---|---|
-| `hero-roundtable`, `ch-pills`, `ch-couch`, `ch-luggage`, `g-laptop`, `g-panel`, `g-senate-group`, `g-nephcure-team`, `g-asn`, `g-altadena`, `g-ucla-podium`, `g-filam`, `g-capitol-aerial` | Marc's LinkedIn (article covers and posts) |
+| `hero-roundtable`, `ch-pills`, `ch-couch`, `ch-luggage`, `g-laptop`, `g-panel`, `g-senate-group`, `g-nephcure-team`, `g-asn`, `g-ucla-podium` (cropped above the logo podium as `g-ucla-team`), `g-filam` (also cropped as the `m-words` menu preview) | Marc's LinkedIn (article covers and posts) |
 | Four-panel hero layout, `hero-banner` | Marc's LinkedIn banner. LinkedIn only serves it at 800×199, so the hero rebuilds it from higher-resolution originals of the same moments. |
-| `hero-tedx`, `ch-tedx-room`, `g-sacramento` | Voyage LA interview (Apr 2026) |
+| `hero-tedx`, `ch-tedx-room`, `g-sacramento`, `bio-gallery` | Voyage LA interview (Apr 2026) |
 | `hero-fighter`, `r-boxing`, `r-tedx-walk`, `r-hill-day`, `g-capitol-meeting`, `ch-dialysis`, `h-hospital-walk`, `l-tedx-stage`, `hon-transplant-games`, `portrait-warm` | Marc's earlier site draft (marccolnel.lovable.app), carried over from the previous version of this repo |
 | `hero-summit`, `g-summit-2`, `ch-athlete`, `g-studio`, `g-hill-meeting`, `g-hill-group` | Bold Journey interview (Apr 2025) |
 | `portrait-studio`, `portrait-black` | TEDxLogan Circle speaker graphics |

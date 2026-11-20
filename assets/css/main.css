@@ -653,7 +653,7 @@ html.is-menu { --head-c: var(--paper); }
 .story.is-open { visibility: visible; }
 .story__bg { position: absolute; inset: 0; background: var(--night); opacity: 0; }
 .story__media { position: absolute; left: 0; top: 0; width: 55.56%; height: 100%; overflow: hidden; z-index: 1; }
-.story__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
+.story__media img { position: absolute; inset: 0; width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
 .story__media::after { content: ""; position: absolute; inset: 0; opacity: var(--shade, 1); background: linear-gradient(90deg, rgba(8,20,37,0) 60%, rgba(8,20,37,.9)); }
 .story__body {
   grid-column: 2; position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px;

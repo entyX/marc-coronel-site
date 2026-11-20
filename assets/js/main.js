@@ -644,29 +644,51 @@
       el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false');
       root.dataset.head = 'dark';
       if (anim) anim.kill();
-      gsap.set(el, { opacity: 1 }); gsap.set(sImg, { clearProps: 'transform' });
-      // quicker than the original pass: the whole open lands in about a second
+      // the card draws its photo 118% wide and slides it for parallax; start the
+      // big photo with exactly that framing so the hand-off is invisible
+      var cardX = gsap.getProperty(src, 'xPercent') || 0;
       anim = gsap.timeline()
         .fromTo(media, rectOf(card), Object.assign({ duration: .75, ease: 'expo.inOut' }, full), 0)
+        .fromTo(sImg, { width: '118%', xPercent: cardX }, { width: '100%', xPercent: 0, duration: .75, ease: 'expo.inOut' }, 0)
         .fromTo(bg, { opacity: 0 }, { opacity: 1, duration: .5, ease: 'power2.out' }, .05)
         .fromTo(el, { '--shade': 0 }, { '--shade': 1, duration: .5, ease: 'power2.out' }, .25)
         .fromTo(parts, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .05 }, .35);
     }
-    function close() {
+    function finish() {
+      el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
+      gsap.set(media, { clearProps: 'left,top,width,height,borderRadius' });
+      gsap.set(sImg, { clearProps: 'width,transform' });
+      gsap.set(bg, { opacity: 0 });
+      if (roundsST && roundsST.isActive) root.dataset.head = headTheme();
+    }
+    /* closing is the opening in reverse: the photo zooms back into its card.
+       It re-measures the card every frame, so if your scroll keeps moving the
+       track it still lands exactly on it, and it ends on the card's own
+       framing (118% wide, same parallax offset) so the swap is seamless.
+       instant = the pinned section is being left; just tidy up.            */
+    function close(instant) {
       if (!api.open) return;
       api.open = false; lastScroll = performance.now();
       if (anim) anim.kill();
-      // Flying the photo back into its card fought the card's own parallax and
-      // clip (and the track keeps moving if you scroll), so it stuttered. The
-      // overlay now simply dissolves over the card that is already underneath.
-      anim = gsap.timeline({ onComplete: function () {
-          el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
-          gsap.set(el, { opacity: 1 }); gsap.set(sImg, { clearProps: 'transform' });
-          if (roundsST && roundsST.isActive) root.dataset.head = headTheme();
-        } })
+      if (instant === true) { finish(); return; }
+      var card = cards[shownFor], cImg = $('.round__media img', card);
+      var r0 = media.getBoundingClientRect(), p0 = pin.getBoundingClientRect();
+      var from = {
+        l: r0.left - p0.left, t: r0.top - p0.top, w: r0.width, h: r0.height,
+        br: parseFloat(getComputedStyle(media).borderTopLeftRadius) || 0,
+        iw: parseFloat(sImg.style.width) || 100, ix: gsap.getProperty(sImg, 'xPercent') || 0
+      };
+      var o = { k: 0 };
+      var lerp = function (a, b) { return a + (b - a) * o.k; };
+      anim = gsap.timeline({ onComplete: finish })
         .to(parts, { opacity: 0, y: -14, duration: .22, ease: 'power2.in', stagger: .015 }, 0)
-        .to(sImg, { scale: 1.04, duration: .5, ease: 'power2.out' }, 0)
-        .to(el, { opacity: 0, duration: .34, ease: 'power2.inOut' }, .06);
+        .to(el, { '--shade': 0, duration: .25, ease: 'power2.out' }, 0)
+        .to(bg, { opacity: 0, duration: .5, ease: 'power2.inOut' }, .12)
+        .to(o, { k: 1, duration: .75, ease: 'expo.inOut', onUpdate: function () {
+          var to = rectOf(card);
+          gsap.set(media, { left: lerp(from.l, to.left), top: lerp(from.t, to.top), width: lerp(from.w, to.width), height: lerp(from.h, to.height), borderRadius: lerp(from.br, 14) });
+          gsap.set(sImg, { width: lerp(from.iw, 118) + '%', xPercent: lerp(from.ix, gsap.getProperty(cImg, 'xPercent') || 0) });
+        } }, .02);
     }
     api.close = close;
     api.tick = function () {
@@ -704,7 +726,7 @@
           cards.forEach(function (c, k) { var d = Math.abs(c.offsetLeft + c.offsetWidth * .3 - focus); if (d < bd) { bd = d; best = k; } });
           setRound(best);
         },
-        onLeave: function () { story.close(); }, onLeaveBack: function () { story.close(); }
+        onLeave: function () { story.close(true); }, onLeaveBack: function () { story.close(true); }
       }
     });
     roundsST = tween.scrollTrigger;
@@ -715,7 +737,7 @@
     });
     setRound(0);
     gsap.ticker.add(story.tick);
-    return function () { story.close(); gsap.ticker.remove(story.tick); roundsST = null; gsap.set(track, { clearProps: 'transform' }); };
+    return function () { story.close(true); gsap.ticker.remove(story.tick); roundsST = null; gsap.set(track, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () {
     cards.forEach(function (c) {

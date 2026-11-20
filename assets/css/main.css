@@ -1285,3 +1285,29 @@ html[data-still] .marquee__track, html[data-still] .btn-book__dot, html[data-sti
   .contact__top { grid-template-columns: 1fr; }
   .contact__top .contact__portrait { order: -1; margin: 0; }
 }
+
+/* ── in my words: a photo beside the quotes that changes with them ───── */
+.words__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) clamp(260px, 30vw, 440px);
+  gap: clamp(30px, 5vw, 90px); align-items: center; padding: 0 var(--pad); margin-top: 40px;
+}
+.words__grid .quotes { margin: 0; }
+.words__grid .quotes__nav { margin: 30px 0 0; }
+.words__grid .quote blockquote { font-size: clamp(2.2rem, 4.4vw, 5rem); max-width: 18ch; }
+.qphoto {
+  position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: var(--sand);
+  box-shadow: 0 30px 60px -30px rgba(8, 20, 37, .45);
+}
+.qphoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+.qphoto img.is-on { opacity: 1; }
+.no-motion .qphoto img { transition: opacity .5s ease; }
+@media (max-width: 900px) {
+  .words__grid { grid-template-columns: 1fr; }
+  .qphoto { order: -1; width: min(100%, 340px); }
+}
+
+/* phones: keep the header on one line */
+.brand__name, .btn-book__txt { white-space: nowrap; }
+@media (max-width: 440px) {
+  .brand__name { display: none; }
+}

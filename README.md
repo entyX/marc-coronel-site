@@ -46,7 +46,7 @@ On desktop the cursor is a boxing glove. Click and it throws a jab. Touch device
 | 03 | Twelve rounds | Vertical scroll drives a horizontal track of twelve rounds: Athlete, Diagnosis, Fall, Chair, Search, Gift, Comeback, Voice, Boardroom (Bayer, Texas), Law, Stage, Record. The background tone shifts from round to round, and the chapter buttons and arrow keys jump between rounds. Story mode: rest on a round for about 2 seconds (a ring fills on the photo) and it opens full screen. Any scroll, key or click closes it, and the photo zooms back into its card, the opening played in reverse. Each round opens once per visit. |
 |  | The hinge | A small frame scales up to fill the screen: "The transplant wasn't the ending. It was the proof." Below it, a portrait beside the UCLA Health quote. |
 | 04 | The receipts | Six counters that climb from zero when they come into view. 966 (Transplant Games, with the medal photo) is a tall tile with 34–0 and 10 hrs beside it, and 3 / 5× / 2 run along the bottom. Then "Recognition & record" (gold medal at the top) beside a sticky Capitol photo, and "Who I've worked with". The UCLA lead-ambassador role only appears in that list, marked "former". |
-| 05 | In my words | A verbatim quote carousel, a scrolling marquee of press and partners (each with a brand badge), and linked headlines. |
+| 05 | In my words | A verbatim quote carousel with a photo of Marc beside it. Each quote has its own photo (`q-*`, cropped 4:5 on him), and the next one wipes up as the quote changes. Below that, a scrolling marquee of press and partners (each with a brand badge) and linked headlines. |
 | 06 | Writing | A draggable shelf of his ten latest LinkedIn articles as typographic cards. |
 | 07 | The Nephluence Project | Everything sits under Nephluence, and the brand is still Kidney Fighter. Cards: The Kidney Fighter Show (YouTube, iHeartRadio), The Kidney Fighter Method, @kidney_fighter, and "Get in touch, new generation". |
 | 08 | Work with me | Speak, Consult, Advocate, plus four signature talks. |
@@ -119,6 +119,7 @@ Every photo shows Marc and comes from his own channels or press coverage of him.
 | `r-boxing`, `r-tedx-walk`, `r-hill-day` (cropped to remove a NephCure caption), `g-capitol-meeting`, `ch-dialysis`, `h-hospital-walk`, `l-tedx-stage`, `hon-transplant-games` | Marc's earlier site draft (marccolnel.lovable.app) |
 | `portrait-studio`, `portrait-black`, `m-intro`, `g-tedx-wide` | TEDxLogan Circle (speaker graphics; video thumbnail) |
 | `ch-transplant`, `m-rounds`, `pill-fox` | FOX 11 Los Angeles |
+| `q-filam`, `q-capitol`, `q-roundtable`, `q-tedx`, `q-portrait` | Crops of `g-filam`, `g-sacramento`, `hero-roundtable`, `hero-tedx` and `portrait-studio` for the quote photos |
 | `hon-capitol` (cropped on Marc) | American Kidney Fund |
 | `hero-portrait`, `h-portrait`, `headshot`, `m-contact` | Portrait session (see "Confirm with Marc") |
 

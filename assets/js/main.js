@@ -261,7 +261,8 @@
   /* ─────────────────────────────────────────────────────────────────── */
   if (!motion) {
     // static fallback: simple quote stepping, all content visible
-    var showQ = function (n) { quotes[qi].classList.remove('is-on'); qi = (n + quotes.length) % quotes.length; quotes[qi].classList.add('is-on'); $('#qNow').textContent = ('0' + (qi + 1)).slice(-2); };
+    var qph = $$('#qPhoto img');
+    var showQ = function (n) { quotes[qi].classList.remove('is-on'); if (qph[qi]) qph[qi].classList.remove('is-on'); qi = (n + quotes.length) % quotes.length; quotes[qi].classList.add('is-on'); if (qph[qi]) qph[qi].classList.add('is-on'); $('#qNow').textContent = ('0' + (qi + 1)).slice(-2); };
     $('#qNext').addEventListener('click', function () { showQ(qi + 1); });
     $('#qPrev').addEventListener('click', function () { showQ(qi - 1); });
     $$('.round').forEach(function (r) { r.classList.add('is-active'); });
@@ -812,12 +813,24 @@
     var lines = quotes.map(function (q) { return splitLines($('blockquote', q)); });
     var caps = quotes.map(function (q) { return $('figcaption', q); });
     var timer = $('#qTimer'), busy = false, prog, inView = false;
+    var photos = $$('#qPhoto img');
     quotes.forEach(function (q, i) { if (i) { gsap.set(lines[i], { yPercent: 115 }); gsap.set(caps[i], { opacity: 0 }); } });
+    photos.forEach(function (ph, i) { gsap.set(ph, { opacity: i === 0 ? 1 : 0, zIndex: i === 0 ? 1 : 0 }); });
+    // the next photo wipes up over the current one while it settles from a slight zoom
+    function swapPhoto(from, to) {
+      var a = photos[from], b = photos[to]; if (!a || !b || a === b) return;
+      photos.forEach(function (ph) { if (ph !== a && ph !== b) gsap.set(ph, { opacity: 0, zIndex: 0 }); });
+      gsap.set(a, { zIndex: 1 }); gsap.set(b, { zIndex: 2, opacity: 1 });
+      gsap.timeline({ onComplete: function () { gsap.set(a, { opacity: 0, zIndex: 0, scale: 1 }); } })
+        .fromTo(b, { clipPath: 'inset(100% 0% 0% 0% round 0px)', scale: 1.14 }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', scale: 1, duration: 1.15, ease: 'expo.inOut' }, 0)
+        .to(a, { scale: 1.06, duration: 1.15, ease: 'expo.inOut' }, 0);
+    }
     function go(n) {
       if (busy) return; busy = true;
       var from = qi; qi = (n + quotes.length) % quotes.length;
       $('#qNow').textContent = ('0' + (qi + 1)).slice(-2);
       quotes[qi].classList.add('is-on');
+      swapPhoto(from, qi);
       gsap.timeline({ onComplete: function () { quotes[from].classList.remove('is-on'); busy = false; } })
         .to(lines[from], { yPercent: -115, duration: .7, ease: 'power3.in', stagger: .05 }, 0)
         .to(caps[from], { opacity: 0, duration: .4 }, 0)

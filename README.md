@@ -7,6 +7,7 @@ index.html              markup and all copy
 assets/css/main.css     styling
 assets/js/main.js       motion and behaviour
 assets/img/photos/      photography (WebP, one JPEG), see "Photo sources"
+assets/img/logos/       partner and press logos
 ```
 
 Preview locally:
@@ -25,7 +26,7 @@ It loads Google Fonts (Archivo, Instrument Serif, JetBrains Mono) and jsDelivr (
 
 ## Look and feel
 
-Navy and warm paper, with gold for the fight and green for what came out of it (`--night #081425`, `--paper #F4F1EA`, `--gold #E0B23A`, `--green-d #1F6B4E`). On paper, gold text uses the darker `--gold-d #85600A` so it passes contrast. All colours are tokens at the top of `main.css`.
+Navy and gold. There's no cream left anywhere. The dark sections sit on `--night #081425`. The sections that used to be paper now sit on a lighter navy (`#0F2240`), and a block near the end of `main.css` ("NAVY + GOLD") swaps the paper and ink tokens inside them, so the older rules still read correctly. Gold is `--gold #E0B23A`, and green (`--green-l`) shows up in small labels.
 
 Headlines are Archivo, condensed and heavy. Italic emphasis is Instrument Serif. Labels and dates are JetBrains Mono. The small sizes are tokens too (`--fs-label` up to `--fs-body`), which is how the accessibility panel enlarges them all in one go.
 
@@ -37,20 +38,20 @@ On desktop the cursor is a boxing glove. Click and it throws a jab. Touch device
 
 | # | Section | What it does |
 |---|---|---|
-|  | Loader | "MARC" over four navy shutters, with "A Fighter / A Speaker / A Strategist / A Patient Advocate" playing one at a time. Click, Escape or Enter skips it, and repeat visits in the same session get a shorter version. |
-| 00 | Hero | Four photos: the roundtable, the TEDx stage, the NephCure summit and a smiling portrait. They're monochrome until the cursor paints colour back in, and press-and-hold floods the colour and widens the panel under the pointer. The kicker reads "TEDx Speaker / Health Equity Strategist / Healthcare Consultant". |
-| 01 | Who I am | An "As featured by" strip (HuffPost, FOX 11, UCLA Health, American Kidney Fund, iHeartRadio, American Red Cross, TEDx, CJASN). Then a manifesto whose words light up as you scroll, with three photo "pills" in the text, a portrait, the publications paragraph, four key facts and "My ethos". |
-| 02 | From the road | A pinned gallery. Nine event photos fly toward you as you scroll, and Marc is in every one. It sits near the start on purpose, so visitors see him in rooms with lawmakers and clinicians early. |
-|  | Four ways to read me | Fighter, Speaker, Patient Advocate, Strategist. Hovering a line shows a photo that follows the cursor. Each line links deeper: Fighter → rounds, Speaker → talks, Advocate → receipts, Strategist → services. |
+|  | Loader | "MARC" over four navy shutters, with "TEDx Speaker / Healthcare Consultant / Patient Advocacy Strategist / The Kidney Fighter" playing one at a time. Click, Escape or Enter skips it, and repeat visits in the same session get a shorter version. |
+| 00 | Hero | Marc "The Kidney Fighter" Coronel. Four photos: Marc smiling at a mic, the TEDx stage, the NephCure summit and a studio portrait. They're monochrome until the cursor paints colour back in, and press-and-hold floods the colour and widens the panel under the pointer. The kicker reads "TEDx Speaker / Healthcare Consultant / Patient Advocacy Strategist", in that order. |
+| 01 | Who I am | A manifesto whose words light up as you scroll, with three photo "pills" in the text. Then a portrait, a short intro, four key facts and "My ethos". The old "As featured by" strip is gone because the logo carousel already covers it. |
+| 02 | From the road | A pinned gallery. Nine photos fly toward you as you scroll: legislators, congressional meetings, TEDx, California Life Sciences, the Rare Disease Caucus and a clinical team. Marc is in every one. There are no patient-event photos here, on purpose. |
+|  | Four ways to read me | Fighter, Speaker, Patient Advocate, Strategist. Hovering a line shows a photo that follows the cursor, and the row fills gold. |
 |  | The pause | The CDC "1 in 7" statistic, then a quote. |
-| 03 | Twelve rounds | Vertical scroll drives a horizontal track of twelve rounds: Athlete, Diagnosis, Fall, Chair, Search, Gift, Comeback, Voice, Boardroom (Bayer, Texas), Law, Stage, Record. The background tone shifts from round to round, and the chapter buttons and arrow keys jump between rounds. Story mode: rest on a round for about 2 seconds (a ring fills on the photo) and it opens full screen. Any scroll, key or click closes it, and the photo zooms back into its card, the opening played in reverse. Each round opens once per visit. |
-|  | The hinge | A small frame scales up to fill the screen: "The transplant wasn't the ending. It was the proof." Below it, a portrait beside the UCLA Health quote. |
-| 04 | The receipts | Six counters that climb from zero when they come into view. 966 (Transplant Games, with the medal photo) is a tall tile with 34–0 and 10 hrs beside it, and 3 / 5× / 2 run along the bottom. Then "Recognition & record" (gold medal at the top) beside a sticky Capitol photo, and "Who I've worked with". The UCLA lead-ambassador role only appears in that list, marked "former". |
-| 05 | In my words | A verbatim quote carousel with a photo of Marc beside it. Each quote has its own photo (`q-*`, cropped 4:5 on him), and the next one wipes up as the quote changes. Below that, a scrolling marquee of press and partners (each with a brand badge) and linked headlines. |
+| 03 | Twelve rounds | Vertical scroll drives a horizontal track of twelve rounds: Athlete, Diagnosis, Fall, Chair, Search, Gift, Comeback, Voice, Boardroom, Law, Research, Record. Round 8 (The Voice) has a "Watch the talk" button that plays the TEDxLogan Circle talk in a lightbox. Round 12 is the Team SoCal photo, shown whole over a blurred copy because the original is small. Story mode: rest on a round for about 2 seconds (a ring fills on the photo) and it opens full screen. Any scroll, key or click closes it, and the photo zooms back into its card. |
+|  | The hinge | A small frame scales up to fill the screen: "The transplant wasn't the ending. It was the proof." Below it, a Capitol photo beside the UCLA Health quote. |
+| 04 | The receipts | A close-up of Marc with his gold medal next to 966, then four counters in a row (34–0, 10 hrs, 3, 2). There's no race statistic. Then "Recognition & record", which now goes back to 2013 with entries from 2019, 2022 and 2023. Beside it is a sticky photo, and below it "Who I've worked with", with logos. No pharma company is named anywhere on the site. |
+| 05 | In my words | A quote carousel (11 seconds a quote) with a photo of Marc that changes with each quote. Below it, a slow carousel of logos (no names) and linked headlines. |
 | 06 | Writing | A draggable shelf of his ten latest LinkedIn articles as typographic cards. |
-| 07 | The Nephluence Project | Everything sits under Nephluence, and the brand is still Kidney Fighter. Cards: The Kidney Fighter Show (YouTube, iHeartRadio), The Kidney Fighter Method, @kidney_fighter, and "Get in touch, new generation". |
-| 08 | Work with me | Speak, Consult, Advocate, plus four signature talks. |
-| 09 | Contact | A portrait at the top, then the booking form (it now includes a "Next gen" option), direct links, and the closing line "The fight became a platform. Now let's move the room." |
+| 07 | What I've built | The Kidney Fighter Show, the Kidney Fighter Method, @kidney_fighter, and the Nephluence Project as one project among them. Marc is the brand. Nephluence isn't the umbrella anymore. |
+| 08 | Work with me | Speak, Consult, Advocate, plus four signature talks. The first talk links to the video. |
+| 09 | Contact | A portrait at the top, then the booking form, direct links, and the closing line. |
 
 Always on screen:
 
@@ -88,22 +89,23 @@ Search the repo for `REPLACE`.
 |---|---|
 | Booking email | `index.html`, `.contact__direct`. It's currently `hello@marccoronel.com`. The form's mailto fallback reads it from this link. |
 | Form endpoint | `<form id="bookForm" action="#">`. While `action` is `#`, the form opens the visitor's mail client pre-filled. Point it at Formspree, Basin or a CRM to post directly. |
-| Brand logos | The "featured by" strip and the marquee use coloured badges with initials (`.pm__mark`), not official logos. Once each organization clears its logo, drop the file into its `.pm__mark`. |
+| Brand logos | Real logos now, in `assets/img/logos/`, each on a white tile. They came from Wikimedia Commons or the organization's own site. The TEDx mark is a redrawn wordmark. Using press and partner logos like this is common, but get each organization's OK before launch. Renal Support Network has no logo file, so it was dropped from the lists. |
 | Testimonials | None are on the page, because none could be verified. Every quote is Marc's own words from published interviews. Add organizer or client quotes as extra `.quote` figures once they're approved. |
 
 ---
 
 ## Confirm with Marc
 
-1. Round 1 photo (`ch-athlete`). It's a podcast-set photo from Bold Journey, and the person the round frames may not be Marc. Swap in a training or boxing photo if so.
-2. 966 photo. The stat asked for a photo of the donors and recipients together. The only one available is Marc alone with his medal.
-3. Bayer, Texas (Round 9). Confirm the wording and that Bayer is fine being named.
-4. Gold medal. Confirm the event and "Team SoCal".
-5. The Fall (Round 3). It's written around a collapse at home followed by the ER. That comes from earlier coverage, so check the wording.
-6. UCLA wording. "CORE Kidney Program, former lead patient ambassador" appears only under "Who I've worked with".
-7. Kidney Fighter Method and Nephluence. Confirm the product names, what's on offer, and podcast links (Apple and Spotify are listed but not linked).
-8. Signature talks. Talks 03 and 04 ("From Patient to Policy", "The Patient in the Room") are framed from his advocacy and consulting work. Confirm the titles he actually uses.
-9. Portrait session source. `hero-portrait`, `h-portrait`, `headshot` and `m-contact` all come from one portrait session. Confirm the photographer credit.
+1. Battle soundtrack. The sound button still plays a calm generated pad. If he wants something harder (drums, a fight-night build), it's a change to `sound()` in `main.js`.
+2. 2024. I couldn't find a sourced 2024 milestone, so the record jumps from 2023 to 2025. Add one if he has it.
+3. "Launched The Kidney Fighter Show, 2019." Apple Podcasts lists the show as active since 2019. Confirm the year.
+4. "Speaker, World Kidney Day educational webinar, Mar 2022." UCLA's July 2022 article says "recently in March", so the year is inferred.
+5. American Red Cross is listed as a "community health partner". Confirm the wording (the old honoree line is gone).
+6. Round 1 photo (`ch-athlete`). It's a podcast-set photo, and the person the round frames may not be Marc.
+7. Several new photos are small (240–640px wide), so some look soft when they're shown big. Higher-resolution originals from Marc would fix it: the Team SoCal photo (`r12-team`), the boardroom talk (`r9-boardroom`), the fighter photo (`r-fighter`), the clinical team and congressional meeting (`g-clinicians`, `g-congress-table`) and the Assembly floor (`l-assembly`).
+8. Gold medal. Confirm the event and "Team SoCal".
+9. Kidney Fighter Method and Nephluence. Confirm the product names and what's on offer.
+10. Signature talks 03 and 04. Confirm the titles he actually uses.
 
 ---
 
@@ -113,17 +115,16 @@ Every photo shows Marc and comes from his own channels or press coverage of him.
 
 | Files | Source |
 |---|---|
-| `hero-tedx`, `ch-tedx-room`, `g-sacramento`, `g-rare-caucus` (California Rare Disease Caucus), `bio-gallery` (re-cropped to centre Marc), `m-opening`, `m-writing`, `m-impact` | Voyage LA interview (Apr 2026) |
+| `hero-tedx`, `g-sacramento`, `g-rare-caucus`, `bio-gallery`, `m-opening`, `m-impact`, `h-capitol` (crop of `m-impact`) | Voyage LA interview (Apr 2026) |
 | `hero-summit`, `g-summit-2`, `ch-athlete`, `g-studio`, `g-hill-meeting`, `g-hill-group`, `m-room`, `m-services`, `m-platform` | Bold Journey interview (Apr 2025) |
-| `hero-roundtable`, `ch-pills`, `ch-couch`, `ch-luggage`, `g-laptop`, `g-panel`, `g-senate-group`, `g-nephcure-team`, `g-asn`, `g-filam`, `m-words` (crop of `g-filam`), `g-ucla-team` (cropped above a UCLA Health logo podium) | Marc's LinkedIn (article covers and posts) |
-| `r-boxing`, `r-tedx-walk`, `r-hill-day` (cropped to remove a NephCure caption), `g-capitol-meeting`, `ch-dialysis`, `h-hospital-walk`, `l-tedx-stage`, `hon-transplant-games` | Marc's earlier site draft (marccolnel.lovable.app) |
-| `portrait-studio`, `portrait-black`, `m-intro`, `g-tedx-wide` | TEDxLogan Circle (speaker graphics; video thumbnail) |
+| `ch-pills`, `ch-couch`, `ch-luggage`, `g-senate-group`, `g-asn` | Marc's LinkedIn |
+| `r-tedx-walk`, `r-hill-day`, `g-capitol-meeting`, `ch-dialysis`, `h-hospital-walk`, `l-tedx-stage`, `metric-medal` (close-up crop of his medal photo) | Marc's earlier site draft |
+| `portrait-studio`, `portrait-black`, `m-intro`, `g-tedx-wide`, `hero-studio-mono` | TEDxLogan Circle |
 | `ch-transplant`, `m-rounds`, `pill-fox` | FOX 11 Los Angeles |
-| `q-filam`, `q-capitol`, `q-roundtable`, `q-tedx`, `q-portrait` | Crops of `g-filam`, `g-sacramento`, `hero-roundtable`, `hero-tedx` and `portrait-studio` for the quote photos |
-| `hon-capitol` (cropped on Marc) | American Kidney Fund |
-| `hero-portrait`, `h-portrait`, `headshot`, `m-contact` | Portrait session (see "Confirm with Marc") |
+| `hero-mic`, `hero-fireplace`, `r-fighter`, `r-strategist`, `r8-tedx`, `r9-boardroom`, `r12-team`, `g-life-sciences`, `g-office-meeting`, `g-clinicians`, `g-congress-table`, `l-assembly`, `q-conversation` | Photos Marc supplied in Nov 2026 |
+| `q-capitol`, `q-tedx`, `q-portrait`, `pill-face` | Crops of `g-sacramento`, `hero-tedx` and `portrait-studio` |
 
-Marc asked that no other brand compete with his name, so photos with logo podiums or event captions were cropped, and the ones a crop couldn't fix were swapped out. The photo with a clinician is gone for the same reason.
+Marc asked that no other brand compete with his name, and that no pharma company be shown, so photos with pharma backdrops (Genentech, Takeda) weren't used. The polo-shirt portraits and the laptop photo are gone because they read as an employee, not a consultant. The shirtless boxing photo and the Filipino American History Month photos are gone too.
 
 ---
 
@@ -142,7 +143,6 @@ Marc asked that no other brand compete with his name, so photos with logo podium
 | Transplant Dec 10, 2019 at UCLA | FOX 11; UCLA Health |
 | Three laps around the hospital within 10 hours of surgery; home in three days | American Kidney Fund |
 | SCR 87 (2025, adopted 34–0) and HR 113 (2026) | California Legislature (SCR 87 roll call confirmed via LegiScan); Marc's LinkedIn honors |
-| FSGS rates up to 5× higher in Black Americans, stated in SCR 87 | SCR 87 text (LegiScan) |
 | Led the City of LA FSGS Awareness Day proclamation | Marc's LinkedIn honors; Voyage LA |
 | Guinness World Record, 966 donors and recipients, Denver 2026; gold medal | Marc's LinkedIn honors; CBS Colorado and Denver7 confirm the 966 figure |
 | CJASN co-author, "A Patient's Perspective on Transportation and Dialysis Outcomes" (Aug 2025), indexed by the NIH National Library of Medicine | Marc's LinkedIn publications; PubMed |
@@ -150,7 +150,10 @@ Marc asked that no other brand compete with his name, so photos with logo podium
 | iHeartRadio, The Kidney Fighter Show | iHeartRadio podcast page |
 | TEDx talk "How I found an organ donor through digital storytelling" | The talk's YouTube upload |
 | YouTube channel `@TheKidneyFighter` | YouTube (the old `@KidneyFighterShow` handle returns 404) |
-| NephCure Impact Award; Red Cross Communication Achievement Award; World Kidney Day recognition | Marc's LinkedIn honors |
+| NephCure Impact Award | Marc's LinkedIn honors |
+| UCLA Health profile (Jul 13, 2022) and the March World Kidney Day webinar | UCLA Health news article |
+| World Kidney Day patient story, "Always prepared for the unexpected" (Jun 20, 2023) | worldkidneyday.org |
+| The Kidney Fighter Show active since 2019 | Apple Podcasts listing |
 | "1 in 7 US adults…, as many as 9 in 10 don't know" | CDC, *Chronic Kidney Disease in the United States* |
 | All quotes | Bold Journey, Voyage LA, UCLA Health and Marc's LinkedIn posts. All are verbatim. |
 
@@ -161,6 +164,8 @@ Marc asked that no other brand compete with his name, so photos with logo podium
 - Smooth scroll: Lenis drives smooth scrolling and syncs with ScrollTrigger. It re-measures on every ScrollTrigger refresh, because the pins add scroll distance after load.
 - Font loading: all SplitText work waits for the web fonts (capped at 1.5s), so lines are measured correctly.
 - Transitions: CSS transitions never touch a property GSAP animates. Card hovers use the independent `translate` property.
+- Video: the TEDx talk loads from youtube-nocookie.com only when someone presses play, so the page doesn't load YouTube until it's needed. Any element with `data-video="<YouTube id>"` opens the lightbox.
+- Small photos: a round image with `data-fit` (and `round__media--fit` on its figure) is shown whole over a blurred copy, in the card and in story mode.
 - Story mode: the round card draws its photo 118% wide and slides it for parallax. Opening starts the big photo with that exact framing. Closing re-measures the card every frame, so the photo still lands if you keep scrolling, and it finishes on the card's own framing so you can't see the swap. Leaving the pinned section just closes it with no animation. The pin also holds for a short stretch (12% of the track) after R12 arrives. Without that hold you'd leave the section the moment the last round lands, and R12 would never open.
 - Index menu: `.menu` keeps `visibility` for one second after closing (a delayed `visibility` transition), so the reverse animation can play.
 - Loader: the shutters overlap by a pixel, so no hairline seams show between them. A CSS animation removes the loader after 7s even if the script never loads.

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marc Coronel — TEDx Speaker, Health Equity Strategist, Healthcare Consultant</title>
-<meta name="description" content="Former boxer. Kidney transplant recipient. TEDx speaker, health equity strategist, healthcare consultant and patient advocacy strategist. Featured by HuffPost, FOX 11, UCLA Health, the American Kidney Fund and iHeartRadio. Book Marc Coronel for keynotes, consulting and advocacy partnerships.">
+<title>Marc &ldquo;The Kidney Fighter&rdquo; Coronel — TEDx Speaker, Healthcare Consultant, Patient Advocacy Strategist</title>
+<meta name="description" content="Marc &ldquo;The Kidney Fighter&rdquo; Coronel: TEDx speaker, healthcare consultant and patient advocacy strategist, and a kidney transplant recipient. Book Marc for keynotes, consulting and advocacy work.">
 <meta name="theme-color" content="#081425">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Marc Coronel — The fight became a platform">
-<meta property="og:description" content="TEDx speaker, health equity strategist and healthcare consultant. Fifteen years with a rare kidney disease, eighteen months of dialysis, one story told out loud.">
+<meta property="og:title" content="Marc &ldquo;The Kidney Fighter&rdquo; Coronel">
+<meta property="og:description" content="TEDx speaker, healthcare consultant and patient advocacy strategist. Kidney transplant recipient, Los Angeles.">
 <meta property="og:image" content="assets/img/photos/hero-tedx.webp">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -40,8 +40,9 @@ try {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Marc Coronel",
-  "jobTitle": ["Keynote Speaker", "Health Equity Strategist", "Healthcare Consultant", "Patient Advocacy Strategist"],
-  "description": "TEDx speaker, health equity strategist, healthcare consultant and patient advocacy strategist. Diagnosed with focal segmental glomerulosclerosis (FSGS) in 2011, received a living-donor kidney transplant at UCLA in December 2019, and now speaks, consults and advocates for patients with rare kidney disease.",
+  "alternateName": "The Kidney Fighter",
+  "jobTitle": ["TEDx Speaker", "Healthcare Consultant", "Patient Advocacy Strategist"],
+  "description": "TEDx speaker, healthcare consultant and patient advocacy strategist. Diagnosed with focal segmental glomerulosclerosis (FSGS) in 2011, received a living-donor kidney transplant at UCLA in December 2019, and now speaks, consults and advocates for patients with rare kidney disease.",
   "address": { "@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US" },
   "sameAs": [
     "https://www.instagram.com/kidney_fighter/",
@@ -79,7 +80,7 @@ try {
     <p class="loader__kicker"><span>Los Angeles</span><span>Est. 2011</span></p>
     <h2 class="loader__name" id="loaderName">MARC</h2>
     <p class="loader__roles" id="loaderRoles">
-      <span>A Fighter</span><span>A Speaker</span><span>A Strategist</span><span>A Patient Advocate</span>
+      <span>TEDx Speaker</span><span>Healthcare Consultant</span><span>Patient Advocacy Strategist</span><span>The Kidney Fighter</span>
     </p>
   </div>
   <p class="loader__count"><span id="loaderCount">00</span></p>
@@ -94,6 +95,12 @@ try {
 
 <!-- keyboard-only: hidden until it receives focus -->
 <a class="skiplink" href="#services">Skip to services</a>
+
+<!-- video: the TEDx talk plays here, loaded only when asked for -->
+<div class="vbox" id="vbox" role="dialog" aria-modal="true" aria-label="TEDx talk video" aria-hidden="true">
+  <button type="button" class="vbox__close" id="vboxClose" aria-label="Close video">&times;</button>
+  <div class="vbox__frame" id="vboxFrame"></div>
+</div>
 
 <!-- ═══ HEADER ═════════════════════════════════════════════════════════════ -->
 <header class="head" id="head">
@@ -160,11 +167,11 @@ try {
       <li><a href="#room"     data-img="assets/img/photos/m-room.webp"><i>02</i><span>From the road</span></a></li>
       <li><a href="#rounds"   data-img="assets/img/photos/m-rounds.webp"><i>03</i><span>Twelve rounds</span></a></li>
       <li><a href="#impact"   data-img="assets/img/photos/m-impact.webp"><i>04</i><span>The receipts</span></a></li>
-      <li><a href="#words"    data-img="assets/img/photos/m-words.webp"><i>05</i><span>In my words</span></a></li>
-      <li><a href="#writing"  data-img="assets/img/photos/m-writing.webp"><i>06</i><span>Writing</span></a></li>
-      <li><a href="#platform" data-img="assets/img/photos/m-platform.webp"><i>07</i><span>Nephluence</span></a></li>
+      <li><a href="#words"    data-img="assets/img/photos/q-conversation.webp"><i>05</i><span>In my words</span></a></li>
+      <li><a href="#writing"  data-img="assets/img/photos/q-portrait.webp"><i>06</i><span>Writing</span></a></li>
+      <li><a href="#platform" data-img="assets/img/photos/m-platform.webp"><i>07</i><span>What I&rsquo;ve built</span></a></li>
       <li><a href="#services" data-img="assets/img/photos/m-services.webp"><i>08</i><span>Work with me</span></a></li>
-      <li><a href="#contact"  data-img="assets/img/photos/m-contact.webp"><i>09</i><span>Contact</span></a></li>
+      <li><a href="#contact"  data-img="assets/img/photos/q-capitol.webp"><i>09</i><span>Contact</span></a></li>
     </ol>
     <figure class="menu__preview" id="menuPreview" aria-hidden="true"><img class="is-on" src="assets/img/photos/m-opening.webp" alt=""><img src="assets/img/photos/m-opening.webp" alt=""></figure>
     <div class="menu__foot">
@@ -189,7 +196,7 @@ try {
     <li><a href="#impact"   data-tick="impact"><span>Receipts</span></a></li>
     <li><a href="#words"    data-tick="words"><span>In my words</span></a></li>
     <li><a href="#writing"  data-tick="writing"><span>Writing</span></a></li>
-    <li><a href="#platform" data-tick="platform"><span>Nephluence</span></a></li>
+    <li><a href="#platform" data-tick="platform"><span>Built</span></a></li>
     <li><a href="#services" data-tick="services"><span>Work with me</span></a></li>
     <li><a href="#contact"  data-tick="contact"><span>Contact</span></a></li>
   </ol>
@@ -203,24 +210,24 @@ try {
 <section class="hero" id="hero" data-section="hero" data-label="Opening" data-theme="dark">
   <div class="hero__stage" id="heroStage">
     <div class="hero__panels hero__panels--mono" aria-hidden="true">
-      <figure class="hp" data-i="0"><img src="assets/img/photos/hero-roundtable-mono.webp" alt="" style="--pos:56% 30%"></figure>
+      <figure class="hp" data-i="0"><img src="assets/img/photos/hero-mic-mono.webp" alt="" style="--pos:34% 40%"></figure>
       <figure class="hp" data-i="1"><img src="assets/img/photos/hero-tedx-mono.webp" alt="" style="--pos:50% 30%"></figure>
       <figure class="hp" data-i="2"><img src="assets/img/photos/hero-summit-mono.webp" alt="" style="--pos:78% 35%"></figure>
-      <figure class="hp hp--type" data-i="3"><img src="assets/img/photos/hero-portrait-mono.webp" alt="" style="--pos:50% 18%"></figure>
+      <figure class="hp hp--type" data-i="3"><img src="assets/img/photos/hero-studio-mono.webp" alt="" style="--pos:50% 18%"></figure>
     </div>
     <div class="hero__panels hero__panels--color" id="heroColor" aria-hidden="true">
-      <figure class="hp" data-i="0"><img src="assets/img/photos/hero-roundtable.webp" alt="" style="--pos:56% 30%"></figure>
+      <figure class="hp" data-i="0"><img src="assets/img/photos/hero-mic.webp" alt="" style="--pos:34% 40%"></figure>
       <figure class="hp" data-i="1"><img src="assets/img/photos/hero-tedx.webp" alt="" style="--pos:50% 30%"></figure>
       <figure class="hp" data-i="2"><img src="assets/img/photos/hero-summit.webp" alt="" style="--pos:78% 35%"></figure>
-      <figure class="hp hp--type" data-i="3"><img src="assets/img/photos/hero-portrait.webp" alt="" style="--pos:50% 18%"></figure>
+      <figure class="hp hp--type" data-i="3"><img src="assets/img/photos/portrait-studio.webp" alt="" style="--pos:50% 18%"></figure>
     </div>
     <div class="hero__shade" aria-hidden="true"></div>
   </div>
 
   <div class="hero__content">
-    <p class="hero__kicker">TEDx Speaker &nbsp;/&nbsp; Health Equity Strategist &nbsp;/&nbsp; Healthcare Consultant</p>
-    <h1 class="hero__name" aria-label="Marc Coronel">
-      <span class="hero__row"><span class="hero__word" data-hero-word>Marc</span></span>
+    <p class="hero__kicker">TEDx Speaker &nbsp;/&nbsp; Healthcare Consultant &nbsp;/&nbsp; Patient Advocacy Strategist</p>
+    <h1 class="hero__name" aria-label="Marc &ldquo;The Kidney Fighter&rdquo; Coronel">
+      <span class="hero__row"><span class="hero__word" data-hero-word>Marc</span><span class="hero__nick" data-hero-fade>&ldquo;The Kidney Fighter&rdquo;</span></span>
       <span class="hero__row hero__row--2"><span class="hero__word" data-hero-word>Coronel</span></span>
     </h1>
     <div class="hero__bottom">
@@ -242,27 +249,12 @@ try {
 </section>
 
 <!-- ═══ 01 · WHO I AM ══════════════════════════════════════════════════════ -->
-<section class="intro" id="intro" data-section="intro" data-label="Who I am" data-theme="light">
-
-  <!-- where the story has run. Marks are typographic stand-ins; drop real logo files into .pm__mark when cleared -->
-  <div class="featured" id="featured" aria-label="Featured by">
-    <p class="featured__label">As featured by</p>
-    <ul class="featured__list">
-      <li class="pm" data-brand="huffpost"><i class="pm__mark">HP</i><span>HuffPost</span></li>
-      <li class="pm" data-brand="fox"><i class="pm__mark">11</i><span>FOX 11 Los Angeles</span></li>
-      <li class="pm" data-brand="ucla"><i class="pm__mark">UH</i><span>UCLA Health</span></li>
-      <li class="pm" data-brand="akf"><i class="pm__mark">AKF</i><span>American Kidney Fund</span></li>
-      <li class="pm" data-brand="iheart"><i class="pm__mark">iH</i><span>iHeartRadio</span></li>
-      <li class="pm" data-brand="redcross"><i class="pm__mark">+</i><span>American Red Cross</span></li>
-      <li class="pm" data-brand="tedx"><i class="pm__mark">x</i><span>TEDx</span></li>
-      <li class="pm" data-brand="cjasn"><i class="pm__mark">NIH</i><span>CJASN</span></li>
-    </ul>
-  </div>
+<section class="intro" id="intro" data-section="intro" data-label="Who I am" data-theme="dark">
 
   <p class="eyebrow"><span class="eyebrow__no">01</span> Who I am</p>
   <p class="manifesto" id="manifesto">
     In 2011 a routine physical
-    <span class="pill" aria-hidden="true"><img src="assets/img/photos/headshot.webp" alt="" loading="lazy" style="object-position:50% 40%"></span>
+    <span class="pill" aria-hidden="true"><img src="assets/img/photos/pill-face.webp" alt="" loading="lazy" style="object-position:50% 40%"></span>
     found a rare kidney disease in a Hollywood fitness trainer and amateur boxer. Me. Eighteen months of dialysis,
     <span class="pill pill--gold" aria-hidden="true"><img src="assets/img/photos/portrait-black.webp" alt="" loading="lazy" style="object-position:50% 38%"></span>
     thirty-three people offering a kidney, and one very public donor search later, I speak up for patients:
@@ -277,13 +269,12 @@ try {
     </figure>
     <div class="intro__copy">
       <p class="lede" data-reveal>I work with doctors, researchers, companies and lawmakers, and I make sure patients get asked before decisions about them are made.</p>
-      <p data-reveal>Hospitals, pharmaceutical companies and nonprofits bring me in for the part a chart leaves out: what it&rsquo;s like to miss a dialysis ride, to wait on a list for years, to walk out of an appointment with more questions than you walked in with. I&rsquo;ve lived all of it.</p>
-      <p data-reveal>My story has run in <a href="https://www.huffpost.com/entry/life-lessons_b_4421618" target="_blank" rel="noopener">HuffPost</a> (&ldquo;A New Kind of Fight&rdquo;), on FOX 11 Los Angeles and iHeartRadio, through UCLA Health, the American Kidney Fund and the American Red Cross, and in the <em>Clinical Journal of the American Society of Nephrology</em>, indexed by the NIH National Library of Medicine.</p>
+      <p data-reveal>Health systems, life-science companies and nonprofits bring me in for the part a chart leaves out: what it&rsquo;s like to miss a dialysis ride, to wait on a list for years, to walk out of an appointment with more questions than you walked in with. I&rsquo;ve lived all of it.</p>
       <ul class="intro__facts" data-reveal>
         <li><b>2011</b><span>Diagnosed with FSGS, age 26</span></li>
         <li><b>Dec 10, 2019</b><span>Living-donor transplant, UCLA</span></li>
         <li><b>TEDx</b><span>Logan Circle, 2025</span></li>
-        <li><b>Now</b><span>Patient advocacy strategist &amp; health equity strategist</span></li>
+        <li><b>Now</b><span>TEDx speaker, healthcare consultant &amp; patient advocacy strategist</span></li>
       </ul>
       <div class="ethos" data-reveal>
         <p class="ethos__label">My ethos</p>
@@ -303,34 +294,34 @@ try {
     <div class="room__center">
       <p class="eyebrow eyebrow--light"><span class="eyebrow__no">02</span> From the road</p>
       <h2 class="room__title">In the <em>room.</em></h2>
-      <p class="room__cap" id="roomCap">Sacramento · Washington · Houston · New York · Los Angeles</p>
+      <p class="room__cap" id="roomCap">Sacramento · Washington, D.C. · Los Angeles</p>
     </div>
     <div class="room__field" id="roomField" aria-hidden="true">
       <figure class="fly" style="--x:-28;--y:-18"><img src="assets/img/photos/g-capitol-meeting.webp" alt="" loading="lazy"><figcaption>Briefing a legislator&rsquo;s office</figcaption></figure>
-      <figure class="fly" style="--x:-24;--y:20"><img src="assets/img/photos/g-asn.webp" alt="" loading="lazy" style="object-position:50% 30%"><figcaption>ASN Kidney Week, Houston</figcaption></figure>
+      <figure class="fly" style="--x:-24;--y:20"><img src="assets/img/photos/g-office-meeting.webp" alt="" loading="lazy" style="object-position:62% 50%"><figcaption>Policy meeting</figcaption></figure>
       <figure class="fly" style="--x:30;--y:16"><img src="assets/img/photos/g-tedx-wide.webp" alt="" loading="lazy"><figcaption>TEDxLogan Circle</figcaption></figure>
       <figure class="fly" style="--x:-6;--y:-24"><img src="assets/img/photos/g-senate-group.webp" alt="" loading="lazy"><figcaption>With legislators</figcaption></figure>
-      <figure class="fly" style="--x:8;--y:22"><img src="assets/img/photos/g-nephcure-team.webp" alt="" loading="lazy"><figcaption>NephCure Patient &amp; Youth Summit</figcaption></figure>
+      <figure class="fly" style="--x:8;--y:22"><img src="assets/img/photos/g-life-sciences.webp" alt="" loading="lazy" style="object-position:35% 40%"><figcaption>California Life Sciences</figcaption></figure>
       <figure class="fly" style="--x:-32;--y:2"><img src="assets/img/photos/g-hill-group.webp" alt="" loading="lazy" style="object-position:50% 60%"><figcaption>Rare Kidneys on the Hill Day</figcaption></figure>
-      <figure class="fly" style="--x:28;--y:-20"><img src="assets/img/photos/g-ucla-team.webp" alt="" loading="lazy" style="object-position:20% 30%"><figcaption>With the care team, UCLA Health</figcaption></figure>
+      <figure class="fly" style="--x:28;--y:-20"><img src="assets/img/photos/g-clinicians.webp" alt="" loading="lazy" style="object-position:70% 40%"><figcaption>Working with a clinical team</figcaption></figure>
       <figure class="fly" style="--x:32;--y:-2"><img src="assets/img/photos/g-rare-caucus.webp" alt="" loading="lazy" style="object-position:75% 40%"><figcaption>California Rare Disease Caucus, Sacramento</figcaption></figure>
-      <figure class="fly" style="--x:2;--y:-6"><img src="assets/img/photos/g-filam.webp" alt="" loading="lazy" style="object-position:50% 40%"><figcaption>Filipino American History Month</figcaption></figure>
+      <figure class="fly" style="--x:2;--y:-6"><img src="assets/img/photos/g-congress-table.webp" alt="" loading="lazy" style="object-position:55% 40%"><figcaption>Congressional meeting, Washington, D.C.</figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- ═══ 03 · FOUR WAYS TO READ ME ══════════════════════════════════════════ -->
-<section class="roles" id="roles" data-section="intro" data-label="Who I am" data-theme="light">
+<section class="roles" id="roles" data-section="intro" data-label="Who I am" data-theme="dark">
   <header class="roles__head">
     <p class="eyebrow">Four ways to read me</p>
     <p class="roles__aside" data-reveal>Hover a line. Click to go deeper.</p>
   </header>
   <ol class="roles__list" id="rolesList">
-    <li class="role" data-img="assets/img/photos/r-boxing.webp" data-pos="62% 40%">
+    <li class="role" data-img="assets/img/photos/r-fighter.webp" data-pos="45% 45%">
       <span class="role__no">01</span>
       <h2 class="role__name"><a class="role__link" href="#rounds" data-cursor="Story">A Fighter</a></h2>
       <p class="role__note">I still train like there&rsquo;s a fight on the calendar. The gym is where I learned to take a hit and keep my hands up. It&rsquo;s also how I got through the chair.</p>
-      <img class="role__thumb" src="assets/img/photos/r-boxing.webp" alt="" loading="lazy" style="object-position:62% 40%">
+      <img class="role__thumb" src="assets/img/photos/r-fighter.webp" alt="" loading="lazy" style="object-position:45% 40%">
     </li>
     <li class="role" data-img="assets/img/photos/r-tedx-walk.webp" data-pos="50% 30%">
       <span class="role__no">02</span>
@@ -344,14 +335,14 @@ try {
       <p class="role__note">Council chambers, the State Senate, congressional offices. I bring a patient&rsquo;s story and a specific ask, and I follow up until someone signs.</p>
       <img class="role__thumb" src="assets/img/photos/r-hill-day.jpg" alt="" loading="lazy" style="object-position:50% 45%">
     </li>
-    <li class="role" data-img="assets/img/photos/g-laptop.webp" data-pos="80% 45%">
+    <li class="role" data-img="assets/img/photos/r-strategist.webp" data-pos="68% 40%">
       <span class="role__no">04</span>
       <h2 class="role__name"><a class="role__link" href="#services" data-cursor="Hire">A Strategist</a></h2>
-      <p class="role__note">Health equity, patient engagement and communications strategy for health systems, pharmaceutical companies and nonprofits. I&rsquo;ve been the patient, so I don&rsquo;t have to guess.</p>
-      <img class="role__thumb" src="assets/img/photos/g-laptop.webp" alt="" loading="lazy" style="object-position:80% 45%">
+      <p class="role__note">Patient engagement and communications strategy for health systems, life-science companies and nonprofits. I&rsquo;ve been the patient, so I don&rsquo;t have to guess.</p>
+      <img class="role__thumb" src="assets/img/photos/r-strategist.webp" alt="" loading="lazy" style="object-position:68% 40%">
     </li>
   </ol>
-  <figure class="roles__float" id="rolesFloat" aria-hidden="true"><img src="assets/img/photos/r-boxing.webp" alt=""></figure>
+  <figure class="roles__float" id="rolesFloat" aria-hidden="true"><img src="assets/img/photos/r-fighter.webp" alt=""></figure>
 </section>
 
 <!-- ═══ THE PAUSE ══════════════════════════════════════════════════════════ -->
@@ -371,7 +362,7 @@ try {
 </section>
 
 <!-- ═══ 04 · TWELVE ROUNDS (horizontal) ════════════════════════════════════ -->
-<section class="rounds" id="rounds" data-section="rounds" data-label="Twelve rounds" data-theme="light">
+<section class="rounds" id="rounds" data-section="rounds" data-label="Twelve rounds" data-theme="dark">
   <div class="rounds__pin" id="roundsPin">
     <header class="rounds__head">
       <p class="eyebrow"><span class="eyebrow__no">03</span> My story, in twelve rounds</p>
@@ -382,7 +373,7 @@ try {
     <div class="rounds__viewport">
       <ol class="rounds__track" id="roundsTrack">
 
-        <li class="round" data-tone="#F1EDE4">
+        <li class="round" data-tone="#0F2240">
           <figure class="round__media"><img src="assets/img/photos/ch-athlete.webp" alt="On a film set, lit for an interview" loading="lazy" style="--pos:70% 50%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R1</span><time>Los Angeles · before 2011</time></p>
@@ -392,7 +383,7 @@ try {
           </div>
         </li>
 
-        <li class="round" data-tone="#E9E4D9">
+        <li class="round" data-tone="#11264A">
           <figure class="round__media"><img src="assets/img/photos/ch-couch.webp" alt="Seated alone on a white couch, looking at the camera" loading="lazy" style="--pos:52% 55%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R2</span><time>2011 · age 26</time></p>
@@ -402,7 +393,7 @@ try {
           </div>
         </li>
 
-        <li class="round" data-tone="#DED8CC">
+        <li class="round" data-tone="#132A50">
           <figure class="round__media"><img src="assets/img/photos/ch-pills.webp" alt="On stage holding a clear bag of medication" loading="lazy" style="--pos:58% 40%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R3</span><time>The long middle</time></p>
@@ -412,7 +403,7 @@ try {
           </div>
         </li>
 
-        <li class="round round--dark" data-tone="#10213A">
+        <li class="round round--dark" data-tone="#0A1A31">
           <figure class="round__media"><img src="assets/img/photos/ch-dialysis.webp" alt="In a dialysis chair mid-session, hand over my face" loading="lazy" style="--pos:62% 40%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R4</span><time>18 months in the chair</time></p>
@@ -422,7 +413,7 @@ try {
           </div>
         </li>
 
-        <li class="round round--dark" data-tone="#0A1628">
+        <li class="round round--dark" data-tone="#081425">
           <figure class="round__media"><img src="assets/img/photos/ch-luggage.webp" alt="Looking up at a towering stack of luggage in an airport" loading="lazy" style="--pos:78% 40%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R5</span><time>2019 · four waitlists</time></p>
@@ -432,7 +423,7 @@ try {
           </div>
         </li>
 
-        <li class="round round--dawn" data-tone="#F3E7C8">
+        <li class="round round--dawn" data-tone="#14294B">
           <figure class="round__media"><img src="assets/img/photos/ch-transplant.webp" alt="In a hospital gown, embracing Shawna after surgery" loading="lazy" style="--pos:50% 45%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R6</span><time>December 10, 2019 · UCLA</time></p>
@@ -442,7 +433,7 @@ try {
           </div>
         </li>
 
-        <li class="round" data-tone="#E6EEE8">
+        <li class="round" data-tone="#0F2442">
           <figure class="round__media"><img src="assets/img/photos/h-hospital-walk.webp" alt="Walking the hospital hallway with my IV stand the week of the transplant" loading="lazy" style="--pos:40% 40%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R7</span><time>The week after</time></p>
@@ -452,27 +443,27 @@ try {
           </div>
         </li>
 
-        <li class="round" data-tone="#E4E9EE">
-          <figure class="round__media"><img src="assets/img/photos/g-panel.webp" alt="Speaking from a small stage to a full room in Burbank" loading="lazy" style="--pos:18% 40%"></figure>
+        <li class="round round--video" data-tone="#112849">
+          <figure class="round__media"><img src="assets/img/photos/r8-tedx.webp" alt="On the red circle at TEDxLogan Circle" loading="lazy" style="--pos:55% 45%"><button type="button" class="round__play" data-video="HOiEdUv2Y0g" data-cursor="Play" aria-label="Play my TEDx talk"><span class="play" aria-hidden="true"></span><em>Watch the talk</em></button></figure>
           <div class="round__body">
-            <p class="round__meta"><span class="round__no">R8</span><time>2020 onward</time></p>
+            <p class="round__meta"><span class="round__no">R8</span><time>2020&ndash;2025 · TEDxLogan Circle</time></p>
             <h3 class="round__title">The Voice</h3>
-            <p class="round__what">American Kidney Fund Ambassador and Kidney Health Coach. NephCure team leader in California. Host of The Kidney Fighter Show. I took the story from a dialysis chair to panels, podcasts and patient summits, and kept the mic pointed at the people still waiting.</p>
-            <p class="round__built"><b>What I took from it</b>A platform other patients could borrow, and the first invitations from the people who write the rules.</p>
+            <p class="round__what">American Kidney Fund Ambassador and Kidney Health Coach. Host of The Kidney Fighter Show. In 2025 I gave a TEDx talk at Logan Circle, &ldquo;The Courage to Ask,&rdquo; on how I found my donor by telling my story online.</p>
+            <p class="round__built"><b>What I took from it</b>A platform other patients could borrow. <button type="button" class="round__watch" data-video="HOiEdUv2Y0g">Watch the TEDx talk</button></p>
           </div>
         </li>
 
-        <li class="round" data-tone="#EDE8DC">
-          <figure class="round__media"><img src="assets/img/photos/g-laptop.webp" alt="Working at a laptop in an office" loading="lazy" style="--pos:80% 45%"></figure>
+        <li class="round" data-tone="#10244A">
+          <figure class="round__media"><img src="assets/img/photos/r9-boardroom.webp" alt="Presenting to an industry team" loading="lazy" style="--pos:42% 50%"></figure>
           <div class="round__body">
-            <p class="round__meta"><span class="round__no">R9</span><time>Pharma · Bayer, Texas</time></p>
+            <p class="round__meta"><span class="round__no">R9</span><time>Industry &amp; health systems</time></p>
             <h3 class="round__title">The Boardroom</h3>
-            <p class="round__what">Pharmaceutical companies started asking me into the rooms where drugs and trials get designed. With Bayer in Texas and other industry teams, I bring the part of the patient the protocol leaves out: the ride, the co-pay, the week nothing works.</p>
-            <p class="round__built"><b>What I took from it</b>A seat at the table, and a rule for keeping it: say the hard thing, then hand them something they can use.</p>
+            <p class="round__what">Companies and health systems started asking me into the rooms where treatments and trials get designed. I bring the part of the patient the protocol leaves out: the ride, the co-pay, the week nothing works.</p>
+            <p class="round__built"><b>What I took from it</b>A rule for those rooms: say the hard thing, then hand them something they can use.</p>
           </div>
         </li>
 
-        <li class="round" data-tone="#E3E8F0">
+        <li class="round" data-tone="#0E2346">
           <figure class="round__media"><img src="assets/img/photos/g-sacramento.webp" alt="At the California State Capitol in front of the flags" loading="lazy" style="--pos:50% 30%"></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R10</span><time>Los Angeles · Sacramento · 2025&ndash;26</time></p>
@@ -482,22 +473,22 @@ try {
           </div>
         </li>
 
-        <li class="round" data-tone="#F1EDE4">
-          <figure class="round__media"><img src="assets/img/photos/ch-tedx-room.webp" alt="Speaking on the TEDx stage to a full room" loading="lazy" style="--pos:68% 40%"></figure>
+        <li class="round" data-tone="#0F2240">
+          <figure class="round__media"><img src="assets/img/photos/g-asn.webp" alt="With nephrologists and advocates at ASN Kidney Week" loading="lazy" style="--pos:50% 35%"></figure>
           <div class="round__body">
-            <p class="round__meta"><span class="round__no">R11</span><time>August 2025 · TEDxLogan Circle</time></p>
-            <h3 class="round__title">The Stage</h3>
-            <p class="round__what">A TEDx talk on finding a donor through digital storytelling. The same month, my name on a paper in the <em>Clinical Journal of the American Society of Nephrology</em>, indexed by the NIH, about what dialysis transportation does to outcomes.</p>
-            <p class="round__built"><b>What I took from it</b>Two kinds of credibility, the stage and the journal, so the same room can&rsquo;t dismiss either.</p>
+            <p class="round__meta"><span class="round__no">R11</span><time>2025 · CJASN · ASN Kidney Week</time></p>
+            <h3 class="round__title">The Research</h3>
+            <p class="round__what">Co-author of a paper in the <em>Clinical Journal of the American Society of Nephrology</em>, indexed by the NIH, on what dialysis transportation does to outcomes. Then ASN Kidney Week, working alongside the nephrologists who run the studies.</p>
+            <p class="round__built"><b>What I took from it</b>Patients belong in the research, not only in the results.</p>
           </div>
         </li>
 
-        <li class="round round--dawn" data-tone="#F3E7C8">
-          <figure class="round__media"><img src="assets/img/photos/hon-transplant-games.webp" alt="With a gold medal at the Transplant Games of America in Denver" loading="lazy" style="--pos:50% 30%"></figure>
+        <li class="round round--dawn" data-tone="#14294B">
+          <figure class="round__media round__media--fit" style="--bg:url(../img/photos/r12-team.webp)"><img src="assets/img/photos/r12-team.webp" alt="With my Team SoCal teammates and our gold medals at the Transplant Games of America" loading="lazy" style="--pos:50% 50%" data-fit></figure>
           <div class="round__body">
             <p class="round__meta"><span class="round__no">R12</span><time>June 2026 · Denver</time></p>
             <h3 class="round__title">The Record</h3>
-            <p class="round__what">At the Transplant Games of America I competed as a recipient, came home with a gold medal, and stood in a Guinness World Record crowd of 966 living donors and recipients gathered in one place.</p>
+            <p class="round__what">At the Transplant Games of America I competed as a recipient with Team SoCal, came home with a gold medal, and stood in a Guinness World Record crowd of 966 living donors and recipients gathered in one place.</p>
             <p class="round__built"><b>What I took from it</b>The next chapter, the Nephluence Project. I want the next patient to have a plan, so they don&rsquo;t have to figure it all out alone in a waiting room.</p>
           </div>
         </li>
@@ -517,7 +508,7 @@ try {
         <li><button type="button" data-goto="7"><i>R8</i><span>Voice</span></button></li>
         <li><button type="button" data-goto="8"><i>R9</i><span>Boardroom</span></button></li>
         <li><button type="button" data-goto="9"><i>R10</i><span>Law</span></button></li>
-        <li><button type="button" data-goto="10"><i>R11</i><span>Stage</span></button></li>
+        <li><button type="button" data-goto="10"><i>R11</i><span>Research</span></button></li>
         <li><button type="button" data-goto="11"><i>R12</i><span>Record</span></button></li>
       </ol>
       <div class="rounds__bar" aria-hidden="true"><span id="roundsBar"></span></div>
@@ -552,7 +543,7 @@ try {
   <div class="hinge__after">
     <p data-reveal>Shawna saw my story and decided to donate. That&rsquo;s the idea behind all of my work now: when people hear what patients actually go through, they&rsquo;re more likely to help. That goes for donors, doctors, companies and lawmakers.</p>
     <div class="hinge__pair">
-      <figure class="hinge__photo" data-reveal><img src="assets/img/photos/h-portrait.webp" alt="Marc Coronel smiling, years after his transplant" loading="lazy" style="object-position:50% 50%"><figcaption>Los Angeles, after the transplant</figcaption></figure>
+      <figure class="hinge__photo" data-reveal><img src="assets/img/photos/h-capitol.webp" alt="Marc Coronel at the California State Capitol" loading="lazy" style="object-position:50% 30%"><figcaption>California State Capitol</figcaption></figure>
       <div>
         <blockquote data-split="words">&ldquo;A healthy person has a thousand wishes and a sick person has just one: to get better.&rdquo;</blockquote>
         <p class="hinge__cite" data-reveal>What I told UCLA Health</p>
@@ -562,7 +553,7 @@ try {
 </section>
 
 <!-- ═══ 05 · IMPACT ════════════════════════════════════════════════════════ -->
-<section class="impact" id="impact" data-section="impact" data-label="Receipts" data-theme="light">
+<section class="impact" id="impact" data-section="impact" data-label="Receipts" data-theme="dark">
   <header class="sec-head">
     <p class="eyebrow"><span class="eyebrow__no">04</span> The receipts</p>
     <h2 class="sec-title" data-split="lines">What the fight has <em>actually</em> moved.</h2>
@@ -570,7 +561,7 @@ try {
 
   <ul class="metrics">
     <li class="metric metric--photo" data-reveal>
-      <figure class="metric__img"><img src="assets/img/photos/hon-transplant-games.webp" alt="Wearing a gold medal at the Transplant Games of America, Denver 2026" loading="lazy"></figure>
+      <figure class="metric__img"><img src="assets/img/photos/metric-medal.webp" alt="Close-up: wearing a gold medal at the Transplant Games of America, Denver 2026" loading="lazy" style="object-position:50% 30%"></figure>
       <div class="metric__body">
         <p class="metric__n"><b data-count="966">966</b></p>
         <p class="metric__t">Living donors and recipients in one place at the 2026 Transplant Games in Denver. A Guinness World Record, and I was in the count.</p>
@@ -589,10 +580,6 @@ try {
       <p class="metric__t">Governments that now formally recognize FSGS: the City of Los Angeles, the California Senate and the California Assembly.</p>
     </li>
     <li class="metric" data-reveal>
-      <p class="metric__n"><b data-count="5">5</b><span>&times;</span></p>
-      <p class="metric__t">Up to five times as often: how FSGS hits Black Americans compared with white Americans. SCR 87 put that gap on the state record.</p>
-    </li>
-    <li class="metric" data-reveal>
       <p class="metric__n"><b data-count="2">2</b></p>
       <p class="metric__t">Capitols where I have lobbied in person for kidney patients: Sacramento and Washington, D.C.</p>
     </li>
@@ -605,37 +592,37 @@ try {
         <li class="honor"><time>Jun 2026</time><p>Gold medal, Transplant Games of America, Denver</p><span>Team SoCal</span></li>
         <li class="honor"><time>Jun 2026</time><p>Guinness World Record: most living donors &amp; recipients gathered in one place</p><span>Transplant Games of America</span></li>
         <li class="honor"><time>Jun 2026</time><p>California State Assembly, HR 113: FSGS Awareness Day</p><span>Asm. Jeff Gonzalez</span></li>
-        <li class="honor"><time>Apr 2026</time><p>Communication Achievement Award, honoree</p><span>American Red Cross</span></li>
-        <li class="honor"><time>Mar 2026</time><p>Certificate of Recognition, World Kidney Day</p><span>Asm. Nick Schultz, AD-44</span></li>
-        <li class="honor"><time>Aug 2025</time><p>TEDx talk: &ldquo;How I found an organ donor through digital storytelling&rdquo;</p><span>TEDxLogan Circle</span></li>
+        <li class="honor"><time>Aug 2025</time><p>TEDx talk: &ldquo;The Courage to Ask&rdquo;</p><span>TEDxLogan Circle</span></li>
         <li class="honor"><time>Aug 2025</time><p>&ldquo;A Patient&rsquo;s Perspective on Transportation and Dialysis Outcomes&rdquo;</p><span>CJASN, co-author · NIH-indexed</span></li>
         <li class="honor"><time>Jun 2025</time><p>California State Senate, SCR 87: FSGS Awareness Day</p><span>Sen. Akilah Weber Pierson</span></li>
         <li class="honor"><time>Jun 2025</time><p>Lead advocate, City of Los Angeles FSGS Awareness Day proclamation</p><span>CM Eunisses Hernandez, CD-1</span></li>
         <li class="honor"><time>Apr 2025</time><p>Impact Award 2024&ndash;25</p><span>NephCure</span></li>
+        <li class="honor"><time>Jun 2023</time><p>Featured patient story: &ldquo;Always prepared for the unexpected&rdquo;</p><span>World Kidney Day</span></li>
+        <li class="honor"><time>Jul 2022</time><p>Profile: &ldquo;UCLA kidney-transplant patient now fights for a new cause&rdquo;</p><span>UCLA Health</span></li>
+        <li class="honor"><time>Mar 2022</time><p>Speaker, World Kidney Day educational webinar</p><span>UCLA Health</span></li>
+        <li class="honor"><time>2019</time><p>Launched The Kidney Fighter Show, a patient-run podcast</p><span>iHeartRadio · Apple Podcasts</span></li>
         <li class="honor"><time>Dec 2013</time><p>&ldquo;A New Kind of Fight&rdquo;, first-person essay</p><span>HuffPost</span></li>
       </ol>
 
       <h3 class="honors__title honors__title--gap" data-reveal>Who I&rsquo;ve worked with</h3>
       <ul class="worked" data-reveal>
-        <li><b>UCLA Health</b><span>CORE Kidney Program, former lead patient ambassador</span></li>
-        <li><b>American Kidney Fund</b><span>Ambassador &amp; Kidney Health Coach</span></li>
-        <li><b>NephCure</b><span>California team leader; Rare Kidneys on the Hill</span></li>
-        <li><b>Bayer</b><span>Patient perspective for pharmaceutical teams, Texas</span></li>
-        <li><b>American Red Cross</b><span>Communication Achievement honoree</span></li>
-        <li><b>Renal Support Network</b><span>Patient panels, Burbank</span></li>
-        <li><b>American Society of Nephrology</b><span>Kidney Week, Houston; CJASN co-author</span></li>
-        <li><b>Transplant Games of America</b><span>Recipient athlete, Team SoCal</span></li>
+        <li><span class="worked__logo"><img class="logo" src="assets/img/logos/ucla.svg" alt="UCLA Health" loading="lazy"></span><b>UCLA Health</b><span>Former patient ambassador, kidney transplant program</span></li>
+        <li><span class="worked__logo"><img class="logo" src="assets/img/logos/akf.svg" alt="American Kidney Fund" loading="lazy"></span><b>American Kidney Fund</b><span>Ambassador &amp; Kidney Health Coach</span></li>
+        <li><span class="worked__logo"><img class="logo" src="assets/img/logos/nephcure.svg" alt="NephCure" loading="lazy"></span><b>NephCure</b><span>California team leader; Rare Kidneys on the Hill</span></li>
+        <li><span class="worked__logo"><img class="logo" src="assets/img/logos/asn.png" alt="American Society of Nephrology" loading="lazy"></span><b>American Society of Nephrology</b><span>Kidney Week; CJASN co-author</span></li>
+        <li><span class="worked__logo"><img class="logo" src="assets/img/logos/redcross.svg" alt="American Red Cross" loading="lazy"></span><b>American Red Cross</b><span>Community health partner</span></li>
+        <li><span class="worked__logo"><img class="logo" src="assets/img/logos/tga.png" alt="Transplant Games of America" loading="lazy"></span><b>Transplant Games of America</b><span>Recipient athlete, Team SoCal</span></li>
       </ul>
     </div>
     <figure class="honors__photo" id="honorsPhoto">
-      <img src="assets/img/photos/hon-capitol.webp" alt="On the steps of the US Capitol" loading="lazy">
-      <figcaption>US Capitol, Washington, D.C.</figcaption>
+      <img src="assets/img/photos/hero-fireplace.webp" alt="Marc Coronel speaking to an industry audience" loading="lazy" style="object-position:50% 62%">
+      <figcaption>Speaking to an industry audience</figcaption>
     </figure>
   </div>
 </section>
 
 <!-- ═══ 06 · IN MY WORDS + PRESS ═══════════════════════════════════════════ -->
-<section class="words" id="words" data-section="words" data-label="In my words" data-theme="light">
+<section class="words" id="words" data-section="words" data-label="In my words" data-theme="dark">
   <p class="eyebrow"><span class="eyebrow__no">05</span> In my words</p>
   <div class="words__grid">
   <div class="words__text">
@@ -670,9 +657,9 @@ try {
   </div>
   <!-- one photo per quote, in the same order; it changes with the quote -->
   <figure class="qphoto" id="qPhoto" aria-hidden="true">
-    <img class="is-on" src="assets/img/photos/q-filam.webp" alt="" style="object-position:50% 30%">
+    <img class="is-on" src="assets/img/photos/m-services.webp" alt="" style="object-position:50% 30%">
     <img src="assets/img/photos/q-capitol.webp" alt="" loading="lazy" style="object-position:50% 30%">
-    <img src="assets/img/photos/q-roundtable.webp" alt="" loading="lazy" style="object-position:50% 30%">
+    <img src="assets/img/photos/q-conversation.webp" alt="" loading="lazy" style="object-position:40% 30%">
     <img src="assets/img/photos/q-tedx.webp" alt="" loading="lazy" style="object-position:50% 25%">
     <img src="assets/img/photos/q-portrait.webp" alt="" loading="lazy" style="object-position:50% 30%">
   </figure>
@@ -682,36 +669,34 @@ try {
     <p class="press__label">As featured by &amp; worked with</p>
     <div class="marquee" aria-label="Press, publications and partners">
       <div class="marquee__track">
-        <span class="pm" data-brand="fox"><i class="pm__mark">11</i>FOX 11 Los Angeles</span>
-        <span class="pm" data-brand="huffpost"><i class="pm__mark">HP</i>HuffPost</span>
-        <span class="pm" data-brand="ucla"><i class="pm__mark">UH</i>UCLA Health</span>
-        <span class="pm" data-brand="akf"><i class="pm__mark">AKF</i>American Kidney Fund</span>
-        <span class="pm" data-brand="iheart"><i class="pm__mark">iH</i>iHeartRadio</span>
-        <span class="pm" data-brand="tedx"><i class="pm__mark">x</i>TEDx</span>
-        <span class="pm" data-brand="cjasn"><i class="pm__mark">NIH</i>CJASN</span>
-        <span class="pm" data-brand="redcross"><i class="pm__mark">+</i>American Red Cross</span>
-        <span class="pm" data-brand="nephcure"><i class="pm__mark">NC</i>NephCure</span>
-        <span class="pm" data-brand="bayer"><i class="pm__mark">B</i>Bayer</span>
-        <span class="pm" data-brand="tga"><i class="pm__mark">TG</i>Transplant Games of America</span>
-        <span class="pm" data-brand="bold"><i class="pm__mark">BJ</i>Bold Journey</span>
-        <span class="pm" data-brand="voyage"><i class="pm__mark">VLA</i>Voyage LA</span>
-        <span class="pm" data-brand="pasadena"><i class="pm__mark">PN</i>Pasadena Now</span>
+        <span class="mlogo"><img src="assets/img/logos/fox.svg" alt="FOX 11 Los Angeles" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/huffpost.svg" alt="HuffPost" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/ucla.svg" alt="UCLA Health" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/akf.svg" alt="American Kidney Fund" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/iheart.svg" alt="iHeartRadio" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/tedx.svg" alt="TEDx" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/asn.png" alt="American Society of Nephrology" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/redcross.svg" alt="American Red Cross" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/nephcure.svg" alt="NephCure" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/tga.png" alt="Transplant Games of America" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/bold.png" alt="Bold Journey" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/voyage.png" alt="Voyage LA" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/pasadena.jpg" alt="Pasadena Now" loading="lazy"></span>
       </div>
       <div class="marquee__track" aria-hidden="true">
-        <span class="pm" data-brand="fox"><i class="pm__mark">11</i>FOX 11 Los Angeles</span>
-        <span class="pm" data-brand="huffpost"><i class="pm__mark">HP</i>HuffPost</span>
-        <span class="pm" data-brand="ucla"><i class="pm__mark">UH</i>UCLA Health</span>
-        <span class="pm" data-brand="akf"><i class="pm__mark">AKF</i>American Kidney Fund</span>
-        <span class="pm" data-brand="iheart"><i class="pm__mark">iH</i>iHeartRadio</span>
-        <span class="pm" data-brand="tedx"><i class="pm__mark">x</i>TEDx</span>
-        <span class="pm" data-brand="cjasn"><i class="pm__mark">NIH</i>CJASN</span>
-        <span class="pm" data-brand="redcross"><i class="pm__mark">+</i>American Red Cross</span>
-        <span class="pm" data-brand="nephcure"><i class="pm__mark">NC</i>NephCure</span>
-        <span class="pm" data-brand="bayer"><i class="pm__mark">B</i>Bayer</span>
-        <span class="pm" data-brand="tga"><i class="pm__mark">TG</i>Transplant Games of America</span>
-        <span class="pm" data-brand="bold"><i class="pm__mark">BJ</i>Bold Journey</span>
-        <span class="pm" data-brand="voyage"><i class="pm__mark">VLA</i>Voyage LA</span>
-        <span class="pm" data-brand="pasadena"><i class="pm__mark">PN</i>Pasadena Now</span>
+        <span class="mlogo"><img src="assets/img/logos/fox.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/huffpost.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/ucla.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/akf.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/iheart.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/tedx.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/asn.png" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/redcross.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/nephcure.svg" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/tga.png" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/bold.png" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/voyage.png" alt="" loading="lazy"></span>
+        <span class="mlogo"><img src="assets/img/logos/pasadena.jpg" alt="" loading="lazy"></span>
       </div>
     </div>
     <ul class="headlines">
@@ -729,7 +714,7 @@ try {
 </section>
 
 <!-- ═══ 07 · WRITING ═══════════════════════════════════════════════════════ -->
-<section class="writing" id="writing" data-section="writing" data-label="Writing" data-theme="light">
+<section class="writing" id="writing" data-section="writing" data-label="Writing" data-theme="dark">
   <header class="sec-head sec-head--row">
     <div>
       <p class="eyebrow"><span class="eyebrow__no">06</span> From the desk</p>
@@ -764,15 +749,15 @@ try {
   <div class="shelf__bar" aria-hidden="true"><span id="shelfBar"></span></div>
 </section>
 
-<!-- ═══ 08 · THE NEPHLUENCE PROJECT (everything lives under it) ════════════ -->
-<section class="platform" id="platform" data-section="platform" data-label="Nephluence" data-theme="dark">
-  <div class="platform__bg" aria-hidden="true"><span>NEPHLUENCE</span><span>PROJECT</span></div>
+<!-- ═══ 08 · WHAT I'VE BUILT (Nephluence is one project among them) ═════════ -->
+<section class="platform" id="platform" data-section="platform" data-label="Built" data-theme="dark">
+  <div class="platform__bg" aria-hidden="true"><span>KIDNEY</span><span>FIGHTER</span></div>
   <header class="sec-head sec-head--row">
     <div>
-      <p class="eyebrow eyebrow--light"><span class="eyebrow__no">07</span> The platform</p>
-      <h2 class="sec-title sec-title--light" data-split="lines">The Nephluence <em>Project.</em></h2>
+      <p class="eyebrow eyebrow--light"><span class="eyebrow__no">07</span> What I&rsquo;ve built</p>
+      <h2 class="sec-title sec-title--light" data-split="lines">Built from <em>the chair.</em></h2>
     </div>
-    <p class="platform__lead" data-reveal>Everything I make lives under one roof. The brand is still <b>Kidney Fighter</b>. The house is the Nephluence Project: patients, research, innovation, policy and storytelling, built on one rule: decisions about patients don&rsquo;t get made without them. And it&rsquo;s built to reach the next generation of patients where they already are.</p>
+    <p class="platform__lead" data-reveal>A show, a method, a community and a project. I started each one because something I needed as a patient didn&rsquo;t exist yet.</p>
   </header>
   <div class="platform__grid">
     <article class="pcard pcard--big" data-reveal>
@@ -780,7 +765,7 @@ try {
       <div class="pcard__body">
         <p class="pcard__tag">Podcast · YouTube · iHeartRadio · Apple · Spotify</p>
         <h3>The Kidney Fighter Show</h3>
-        <p>Patient-run and unfiltered. Transplant, dialysis, the paperwork, the bad weeks, the good ones. Guests are people living it and the clinicians who treat them. Now produced under the Nephluence Project.</p>
+        <p>Patient-run and unfiltered. Transplant, dialysis, the paperwork, the bad weeks, the good ones. Guests are people living it and the clinicians who treat them.</p>
         <div class="pcard__links">
           <a class="link-arrow link-arrow--light" href="https://www.youtube.com/@TheKidneyFighter" target="_blank" rel="noopener" data-cursor="Watch">Watch on YouTube</a>
           <a class="link-arrow link-arrow--light" href="https://www.iheart.com/podcast/269-the-kidney-fighter-show-99160411/" target="_blank" rel="noopener" data-cursor="Listen">Listen on iHeartRadio</a>
@@ -805,24 +790,24 @@ try {
     </article>
     <article class="pcard pcard--outline" data-reveal>
       <div class="pcard__body">
-        <p class="pcard__tag">Next gen</p>
-        <h3>Get in touch, new generation</h3>
-        <p>Student groups, youth summits, first-year patients. If you&rsquo;re young and just got a diagnosis, or you run a room full of people who did, this is the door. No budget required to ask.</p>
+        <p class="pcard__tag">A project of mine</p>
+        <h3>The Nephluence Project</h3>
+        <p>Patients, research, innovation, policy and storytelling, on one rule: decisions about patients don&rsquo;t get made without them. Student groups, youth summits and newly diagnosed patients are welcome. No budget required to ask.</p>
         <ul class="chips"><li>Patients</li><li>Research</li><li>Innovation</li><li>Policy</li><li>Storytelling</li></ul>
-        <a class="link-arrow link-arrow--light" href="#contact" data-intent="Next gen">Say hello</a>
+        <a class="link-arrow link-arrow--light" href="#contact" data-intent="Next gen">Get in touch, new generation</a>
       </div>
     </article>
   </div>
 </section>
 
 <!-- ═══ 09 · WORK WITH ME ══════════════════════════════════════════════════ -->
-<section class="lanes" id="services" data-section="services" data-label="Work with me" data-theme="light">
+<section class="lanes" id="services" data-section="services" data-label="Work with me" data-theme="dark">
   <header class="sec-head sec-head--row">
     <div>
       <p class="eyebrow"><span class="eyebrow__no">08</span> Work with me</p>
       <h2 class="sec-title" data-split="lines">Three ways to bring me <em>in.</em></h2>
     </div>
-    <p class="lanes__lead" data-reveal>Health systems, transplant centers, pharmaceutical and biotech companies, patient groups, schools and companies. Some book me for a keynote. Others bring me on as a strategist for several months.</p>
+    <p class="lanes__lead" data-reveal>Health systems, transplant centers, life-science companies, patient groups, schools and companies. Some book me for a keynote. Others bring me on as a strategist for several months.</p>
   </header>
 
   <div class="lanes__grid" id="lanes">
@@ -855,7 +840,7 @@ try {
       </div>
     </article>
     <article class="lane" data-reveal>
-      <figure class="lane__img"><img src="assets/img/photos/r-hill-day.jpg" alt="Advocates on the steps of the US Capitol" loading="lazy" style="object-position:50% 60%"></figure>
+      <figure class="lane__img"><img src="assets/img/photos/l-assembly.webp" alt="With advocates on the California State Assembly floor" loading="lazy" style="object-position:60% 50%"></figure>
       <div class="lane__body">
         <span class="lane__no">03</span>
         <h3>Advocate</h3>
@@ -873,10 +858,10 @@ try {
   <div class="talks" id="talks">
     <h3 class="talks__title" data-reveal>Signature talks</h3>
     <ol class="talks__list">
-      <li data-reveal><i>01</i><div><h4>The Courage to Ask</h4><p>My TEDxLogan Circle talk. Why asking strangers for a kidney felt impossible, how I did it anyway, and what any patient can borrow from a donor campaign.</p></div></li>
+      <li data-reveal><i>01</i><div><h4>The Courage to Ask</h4><p>My TEDxLogan Circle talk (<button type="button" class="talks__watch" data-video="HOiEdUv2Y0g">watch it</button>). Why asking strangers for a kidney felt impossible, how I did it anyway, and what any patient can borrow from a donor campaign.</p></div></li>
       <li data-reveal><i>02</i><div><h4>You Don&rsquo;t Look Sick</h4><p>Living with a disease nobody can see. Being believed by employers, friends and sometimes doctors, and what care teams can do about it.</p></div></li>
       <li data-reveal><i>03</i><div><h4>From Patient to Policy</h4><p>How one person moved an awareness day from a city council office to the State Senate floor, and a playbook for patient groups who want to do the same.</p></div></li>
-      <li data-reveal><i>04</i><div><h4>The Patient in the Room</h4><p>For health systems, pharma and health-tech teams: where patient input actually changes a product or a trial, and where it just gets thanked and filed.</p></div></li>
+      <li data-reveal><i>04</i><div><h4>The Patient in the Room</h4><p>For health systems, life-science and health-tech teams: where patient input actually changes a product or a trial, and where it just gets thanked and filed.</p></div></li>
     </ol>
   </div>
 </section>
@@ -890,7 +875,7 @@ try {
           <p class="eyebrow eyebrow--light"><span class="eyebrow__no">09</span> Booking</p>
           <h2 class="contact__h2" data-split="lines">Tell me what the room <em>needs.</em></h2>
         </div>
-        <figure class="contact__portrait" data-reveal><img src="assets/img/photos/portrait-studio.webp" alt="Marc Coronel, smiling, in a light grey jacket" loading="lazy"></figure>
+        <figure class="contact__portrait" data-reveal><img src="assets/img/photos/m-intro.webp" alt="Marc Coronel, smiling, in a light grey jacket" loading="lazy"></figure>
       </div>
       <p class="contact__note" data-reveal>Dates, budgets, scope, or a question you&rsquo;re not sure how to ask yet. I answer these myself.</p>
       <ul class="contact__direct" data-reveal>
@@ -932,7 +917,7 @@ try {
   </div>
 
   <footer class="foot">
-    <span>&copy; <span id="yr">2026</span> Marc Coronel · The Nephluence Project</span>
+    <span>&copy; <span id="yr">2026</span> Marc Coronel</span>
     <span>Los Angeles, California</span>
     <a href="#top">Back to top ↑</a>
   </footer>

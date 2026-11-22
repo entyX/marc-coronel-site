@@ -638,6 +638,10 @@
       api.open = true; shownFor = i;
       sImg.src = src.getAttribute('src'); sImg.alt = src.alt;
       sImg.style.setProperty('--pos', src.style.getPropertyValue('--pos') || '50% 50%');
+      // a small photo (R12's team shot) is shown whole over a blurred copy, never stretched to fill
+      var fit = src.hasAttribute('data-fit');
+      media.classList.toggle('is-fit', fit);
+      if (fit) media.style.setProperty('--bg', 'url("' + src.currentSrc + '")'); else media.style.removeProperty('--bg');
       $('#storyMeta').innerHTML = $('.round__meta', card).innerHTML;
       $('#storyTitle').innerHTML = $('.round__title', card).innerHTML;
       $('#storyWhat').innerHTML = $('.round__what', card).innerHTML;
@@ -851,7 +855,7 @@
     }
     function restart() {
       if (prog) prog.kill();
-      prog = gsap.fromTo(timer, { scaleX: 0 }, { scaleX: 1, duration: 7, ease: 'none', onComplete: function () { go(qi + 1); } });
+      prog = gsap.fromTo(timer, { scaleX: 0 }, { scaleX: 1, duration: 11, ease: 'none', onComplete: function () { go(qi + 1); } });
       if (!inView) prog.pause();
     }
     ScrollTrigger.create({ trigger: '#quotes', start: 'top bottom', end: 'bottom top',
@@ -880,6 +884,35 @@
     gsap.from($('img', f), { scale: 1.25, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: f, start: 'top 88%' } });
   });
 
+  /* ── video: the TEDx talk opens in a lightbox; the player loads only on demand ── */
+  (function video() {
+    var box = $('#vbox'), frame = $('#vboxFrame'), closeBtn = $('#vboxClose'), last = null;
+    if (!box) return;
+    function open(id, from) {
+      last = from || document.activeElement;
+      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" title="Marc Coronel at TEDxLogan Circle" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      box.classList.add('is-on'); box.setAttribute('aria-hidden', 'false');
+      if (lenis) lenis.stop();
+      closeBtn.focus();
+    }
+    function shut() {
+      if (!box.classList.contains('is-on')) return;
+      box.classList.remove('is-on'); box.setAttribute('aria-hidden', 'true');
+      setTimeout(function () { frame.innerHTML = ''; }, 400);
+      if (lenis) lenis.start();
+      if (last && last.focus) last.focus();
+    }
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('[data-video]');
+      if (!t) return;
+      e.preventDefault(); e.stopPropagation();
+      open(t.getAttribute('data-video'), t);
+    }, true);
+    closeBtn.addEventListener('click', shut);
+    box.addEventListener('click', function (e) { if (e.target === box) shut(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
+  }());
+
   /* ── coda: a slow marquee that leans into your scroll speed ──────── */
   (function coda() {
     var tr = $('.coda__track'); if (!tr) return;
@@ -890,7 +923,7 @@
     gsap.ticker.add(function () {
       if (!vis || root.hasAttribute('data-still')) return;
       var v = lenis ? Math.abs(lenis.velocity) : 0;
-      x -= .7 + Math.min(v, 60) * .25;
+      x -= .35 + Math.min(v, 60) * .1;
       if (x <= -half) x += half;
       tr.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
     });
